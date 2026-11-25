@@ -7,33 +7,33 @@
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="迟川窗台" />
-  <meta name="theme-color" content="#09090b" />
+  <meta name="theme-color" content="#0a0a0d" />
   <link rel="apple-touch-icon" href="icon.jpg" />
   <link rel="icon" href="icon.jpg" />
   <title>迟川 · 窗台微缩：共养多肉 &amp; 手织毛衣进度</title>
   <style>
     :root {
       --app-h: 100vh;
-      --bg: #09090b;
-      --card: #131317;
-      --card-hi: #1b1a22;
+      --bg: #0a0a0d;
+      --card: #141319;
+      --card-hi: #1c1b24;
       --line: rgba(214, 180, 124, 0.18);
       --line-soft: rgba(255, 255, 255, 0.07);
       --gold: #d6b47c;
       --gold-hi: #f2dab0;
       --rose: #e2a8a8;
-      --green: #7fb08a;
-      --wither: #7a7064;
+      --green: #8db596;
+      --wither: #7c7165;
       --danger: #d96b75;
       --text: #f4efe8;
-      --muted: #a39a91;
-      --dim: #6f6861;
+      --muted: #a49b92;
+      --dim: #706861;
     }
 
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; user-select: none; }
     input, textarea, select { user-select: text; font-family: inherit; }
 
-    /* iPhone 14 Pro 零黑边全屏架构：严禁外层 fixed inset:0 或 100dvh */
+    /* iPhone 14 Pro 桌面全屏零黑边架构：禁用外层 fixed inset:0 与 100dvh */
     html, body {
       margin: 0; padding: 0; width: 100%; height: var(--app-h);
       background: var(--bg); color: var(--text); overflow: hidden;
@@ -47,8 +47,8 @@
       height: var(--app-h); width: 100%; max-width: 480px; margin: 0 auto;
       position: relative; overflow: hidden; background: var(--bg);
       background-image:
-        radial-gradient(ellipse 90% 24% at 50% 0%, rgba(214, 180, 124, 0.08), transparent 68%),
-        radial-gradient(ellipse 84% 22% at 50% 100%, rgba(127, 176, 138, 0.055), transparent 72%);
+        radial-gradient(ellipse 92% 24% at 50% 0%, rgba(214, 180, 124, 0.085), transparent 68%),
+        radial-gradient(ellipse 84% 22% at 50% 100%, rgba(141, 181, 150, 0.06), transparent 72%);
     }
     @media (min-width: 520px) {
       .shell {
@@ -62,7 +62,7 @@
     .topbar {
       flex-shrink: 0; z-index: 20;
       padding: max(12px, env(safe-area-inset-top)) 14px 10px;
-      background: rgba(10, 10, 14, 0.92);
+      background: rgba(10, 10, 13, 0.92);
       backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--line-soft);
       display: flex; align-items: center; justify-content: space-between; gap: 8px;
@@ -83,22 +83,22 @@
     .icon-btn {
       width: 30px; height: 30px; border-radius: 50%;
       display: inline-flex; align-items: center; justify-content: center;
-      background: rgba(127, 176, 138, 0.11); border: 1px solid rgba(127, 176, 138, 0.32); color: var(--green);
+      background: rgba(141, 181, 150, 0.12); border: 1px solid rgba(141, 181, 150, 0.34); color: var(--green);
     }
-    .icon-btn.on { background: rgba(127, 176, 138, 0.28); border-color: var(--green); box-shadow: 0 0 12px rgba(127, 176, 138, 0.4); }
+    .icon-btn.on { background: rgba(141, 181, 150, 0.28); border-color: var(--green); box-shadow: 0 0 12px rgba(141, 181, 150, 0.42); }
 
-    /* 中央内容区 */
+    /* 中央主滚动区 */
     .main {
       flex: 1; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch;
       padding: 8px 10px 22px; scrollbar-width: none;
     }
     .main::-webkit-scrollbar { display: none; }
 
-    /* 底部四栏导航 */
+    /* 底部四栏导航：延伸铺满小白条下方 */
     .tabbar {
       flex-shrink: 0; z-index: 20;
       display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px;
-      background: #0c0c10;
+      background: #0d0c11;
       border-top: 1px solid rgba(214, 180, 124, 0.14);
       padding: 8px 8px max(12px, env(safe-area-inset-bottom));
     }
@@ -111,12 +111,13 @@
     /* 通用基础组件 */
     button { border: none; background: none; color: inherit; font-family: inherit; cursor: pointer; padding: 0; }
     button:active { transform: scale(0.96); }
+    button:disabled { opacity: 0.55; pointer-events: none; }
     .hidden { display: none !important; }
     .stack { display: flex; flex-direction: column; gap: 10px; }
     .row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-    .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+    .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
     .card {
-      background: linear-gradient(160deg, #17161e, #111116);
+      background: linear-gradient(160deg, #18171f, var(--card));
       border: 1px solid var(--line); border-radius: 18px; padding: 13px;
     }
     .sec-t { font-size: 13.5px; font-weight: 600; color: var(--text); letter-spacing: 0.02em; }
@@ -126,43 +127,45 @@
       font-size: 10px; font-weight: 500; white-space: nowrap;
       background: rgba(214, 180, 124, 0.13); border: 1px solid rgba(214, 180, 124, 0.34); color: var(--gold-hi);
     }
-    .pill.green { background: rgba(127, 176, 138, 0.16); border-color: rgba(127, 176, 138, 0.42); color: #bfe4c7; }
-    .pill.rose { background: rgba(226, 168, 168, 0.16); border-color: rgba(226, 168, 168, 0.42); color: #f7d2d2; }
+    .pill.green { background: rgba(141, 181, 150, 0.16); border-color: rgba(141, 181, 150, 0.42); color: #c4e8cc; }
+    .pill.rose { background: rgba(226, 168, 168, 0.16); border-color: rgba(226, 168, 168, 0.42); color: #f8d4d4; }
     .pill.warn { background: rgba(217, 107, 117, 0.2); border-color: rgba(217, 107, 117, 0.55); color: #ffbfc5; }
-    .pill.wither { background: rgba(122, 112, 100, 0.24); border-color: rgba(160, 148, 134, 0.48); color: #d7cec4; }
+    .pill.wither { background: rgba(124, 113, 101, 0.24); border-color: rgba(164, 150, 136, 0.5); color: #d8cfc4; }
     .pill.dim { background: rgba(255, 255, 255, 0.045); border-color: var(--line-soft); color: var(--muted); }
     .inp {
       width: 100%; padding: 9px 11px; border-radius: 12px; font-size: 12.5px;
-      background: #0a0a0f; border: 1px solid rgba(214, 180, 124, 0.22); color: var(--text); outline: none;
+      background: #0a0a0e; border: 1px solid rgba(214, 180, 124, 0.22); color: var(--text); outline: none;
     }
     .inp:focus { border-color: var(--gold); }
     .inp::placeholder { color: var(--dim); }
     .btn {
-      width: 100%; padding: 11px 13px; border-radius: 14px; font-size: 12.5px; font-weight: 500; text-align: center;
+      width: 100%; padding: 10.5px 12px; border-radius: 13px; font-size: 12px; font-weight: 500; text-align: center;
       background: rgba(255, 255, 255, 0.045); border: 1px solid var(--line); color: var(--text);
     }
     .btn.gold {
-      background: linear-gradient(135deg, #f0d4a4, #c29857); border-color: transparent;
+      background: linear-gradient(135deg, #f2dab0, #c29857); border-color: transparent;
       color: #0b0a09; font-weight: 600; box-shadow: 0 8px 22px rgba(214, 180, 124, 0.22);
     }
     .btn.soft { background: rgba(214, 180, 124, 0.11); border-color: rgba(214, 180, 124, 0.34); color: var(--gold-hi); }
-    .btn.warn { background: rgba(217, 107, 117, 0.16); border-color: rgba(217, 107, 117, 0.45); color: #ffc2c8; }
+    .btn.green-soft { background: rgba(141, 181, 150, 0.14); border-color: rgba(141, 181, 150, 0.42); color: #c7e9ce; }
+    .btn.warn { background: rgba(217, 107, 117, 0.15); border-color: rgba(217, 107, 117, 0.45); color: #ffc2c8; }
 
-    /* ========== TAB 1: 高挑大视野主视觉窗台（占首屏 55%+） ========== */
+    /* ========== TAB 1: 大视野主视觉窗台（viewBox 420x350） ========== */
     .stage-wrap {
       position: relative; width: 100%;
-      height: clamp(356px, 55%, 404px); min-height: 348px;
+      height: clamp(354px, 54%, 406px); min-height: 344px;
       border-radius: 22px; overflow: hidden;
-      border: 1px solid rgba(214, 180, 124, 0.32);
+      border: 1px solid rgba(214, 180, 124, 0.34);
       background: #0b0b10;
       box-shadow: 0 18px 44px rgba(0, 0, 0, 0.72), inset 0 1px 0 rgba(242, 218, 176, 0.12);
     }
     #stage-svg-box { width: 100%; height: 100%; }
     .stage-svg { display: block; width: 100%; height: 100%; }
-    /* 核心 C 位顺滑换位动画 */
+    /* 核心 C 位顺滑移动过渡（固定原点 0 0，保证 iOS Safari 平移不抖动） */
     .pot-mover {
       cursor: pointer;
-      transition: transform 0.55s cubic-bezier(.22, 1, .36, 1);
+      transform-origin: 0 0;
+      transition: transform 0.56s cubic-bezier(.22, 1, .36, 1);
       will-change: transform;
     }
     .stage-top-bar {
@@ -172,7 +175,7 @@
     .stage-tag {
       pointer-events: auto;
       padding: 4px 10px; border-radius: 999px; font-size: 10.5px; font-weight: 500;
-      background: rgba(9, 9, 13, 0.64);
+      background: rgba(10, 10, 14, 0.65);
       backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(242, 218, 176, 0.28); color: var(--text);
       display: inline-flex; align-items: center; gap: 5px;
@@ -180,11 +183,11 @@
     .stage-bubble {
       position: absolute; left: 9px; right: 9px; bottom: 9px; z-index: 9;
       padding: 8px 11px; border-radius: 14px;
-      background: rgba(14, 13, 19, 0.93); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(214, 180, 124, 0.44);
-      font-size: 11.5px; line-height: 1.55; color: var(--gold-hi);
+      background: rgba(14, 13, 20, 0.94); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(214, 180, 124, 0.45);
+      font-size: 11.5px; line-height: 1.56; color: var(--gold-hi);
       opacity: 0; transform: translateY(8px); pointer-events: none;
-      transition: opacity 0.25s ease, transform 0.25s ease;
+      transition: opacity 0.24s ease, transform 0.24s ease;
     }
     .stage-bubble.show { opacity: 1; transform: translateY(0); }
     .fx-layer { position: absolute; inset: 0; pointer-events: none; z-index: 7; overflow: hidden; }
@@ -194,7 +197,7 @@
     }
     .flash-layer.go { opacity: 0.92; transition: opacity 0.04s linear; }
 
-    /* 水珠、阳光、清风、升级粒子 */
+    /* 水珠、暖阳与微风特效粒子 */
     .fx-drop {
       position: absolute; width: 6px; height: 10px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
       background: linear-gradient(180deg, #e7f8ff, #7dc7e8);
@@ -209,53 +212,58 @@
     }
     .fx-wind {
       position: absolute; height: 2px; border-radius: 99px;
-      background: linear-gradient(90deg, transparent, rgba(196, 234, 206, 0.85), transparent);
+      background: linear-gradient(90deg, transparent, rgba(196, 234, 206, 0.86), transparent);
       animation: windSweep 0.9s ease-out forwards;
     }
 
-    /* 紧凑状态条 */
+    /* 紧凑暗金玻璃状态条 */
     .status-strip {
       border-radius: 16px; padding: 8px 11px;
-      background: linear-gradient(155deg, rgba(25, 24, 32, 0.95), rgba(15, 15, 21, 0.96));
+      background: linear-gradient(155deg, rgba(25, 24, 33, 0.95), rgba(15, 14, 21, 0.96));
       border: 1px solid rgba(214, 180, 124, 0.24);
       display: flex; flex-direction: column; gap: 6px;
     }
-    .status-strip.wilted { border-color: rgba(217, 107, 117, 0.5); }
-    .status-strip.withered { border-color: rgba(160, 148, 134, 0.45); }
+    .status-strip.wilted { border-color: rgba(217, 107, 117, 0.52); }
+    .status-strip.withered { border-color: rgba(164, 150, 136, 0.48); }
     .exp-mini { width: 100%; height: 4px; border-radius: 999px; background: rgba(255, 255, 255, 0.08); overflow: hidden; }
     .exp-mini-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--green), var(--gold-hi)); transition: width 0.35s ease; }
 
-    /* 枯萎时的迟川专属安抚与扦插卡片 */
+    /* 枯萎专属：迟川温柔安抚与扦插卡片 */
     .rescue-card {
       border-radius: 18px; padding: 13px;
-      background: linear-gradient(155deg, #211c19, #141214);
-      border: 1px solid rgba(214, 180, 124, 0.44);
+      background: linear-gradient(155deg, #221d1a, #141215);
+      border: 1px solid rgba(214, 180, 124, 0.45);
       box-shadow: 0 12px 28px rgba(0, 0, 0, 0.52);
-      animation: fadeUp 0.26s ease;
+      animation: fadeUp 0.25s ease;
     }
 
-    /* 1x4 紧凑操作栏（首屏免滚全见） */
+    /* 1x4 极简操作按钮栏（首屏免滚全见） */
     .act-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; }
     .act-mini {
       padding: 8px 4px 7px; border-radius: 15px;
-      background: linear-gradient(160deg, #181720, #111117);
+      background: linear-gradient(160deg, #191822, #121118);
       border: 1px solid rgba(214, 180, 124, 0.2);
       display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
     }
-    .act-mini:active { border-color: rgba(214, 180, 124, 0.56); transform: scale(0.95); }
-    .act-mini-ic {
-      width: 27px; height: 27px; border-radius: 9px;
-      display: flex; align-items: center; justify-content: center;
-      background: rgba(214, 180, 124, 0.12); border: 1px solid rgba(214, 180, 124, 0.28); color: var(--gold-hi);
+    .act-mini:active { border-color: rgba(214, 180, 124, 0.58); transform: scale(0.95); }
+    .act-mini.highlight {
+      background: linear-gradient(160deg, #2b2217, #191512);
+      border-color: rgba(242, 218, 176, 0.62);
+      box-shadow: 0 0 16px rgba(214, 180, 124, 0.18);
     }
-    .act-mini-ic.green { background: rgba(127, 176, 138, 0.16); border-color: rgba(127, 176, 138, 0.38); color: #c4e4cc; }
-    .act-mini-ic.rose { background: rgba(226, 168, 168, 0.16); border-color: rgba(226, 168, 168, 0.4); color: #f8cfd4; }
+    .act-mini-ic {
+      width: 26px; height: 26px; border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(214, 180, 124, 0.13); border: 1px solid rgba(214, 180, 124, 0.3); color: var(--gold-hi);
+    }
+    .act-mini-ic.green { background: rgba(141, 181, 150, 0.16); border-color: rgba(141, 181, 150, 0.4); color: #c7e9ce; }
+    .act-mini-ic.rose { background: rgba(226, 168, 168, 0.16); border-color: rgba(226, 168, 168, 0.42); color: #f8cfd4; }
     .act-mini-lbl { font-size: 11px; font-weight: 500; color: var(--text); white-space: nowrap; }
 
     /* 窗台便利贴 */
     .sticky-note {
       position: relative; border-radius: 18px; padding: 12px 13px;
-      background: linear-gradient(155deg, #211d17, #151311);
+      background: linear-gradient(155deg, #221d17, #151311);
       border: 1px solid rgba(214, 180, 124, 0.34);
     }
     .sticky-pin {
@@ -268,7 +276,7 @@
     .meter-track { width: 100%; height: 6px; border-radius: 999px; background: rgba(255, 255, 255, 0.08); overflow: hidden; margin-top: 5px; }
     .meter-fill { height: 100%; border-radius: 999px; transition: width 0.38s ease; }
     .meter-fill.water { background: linear-gradient(90deg, #74b8d6, #b7e8fc); }
-    .meter-fill.rose { background: linear-gradient(90deg, #7fb08a, #e2a8a8); }
+    .meter-fill.rose { background: linear-gradient(90deg, #8db596, #e2a8a8); }
     .meter-fill.gold { background: linear-gradient(90deg, #d6b47c, #f2dab0); }
 
     .polaroid-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -277,13 +285,13 @@
       background: linear-gradient(180deg, #f4efe6, #e5ded2);
       color: #26221f; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.56);
     }
-    .polaroid-frame { border-radius: 8px; overflow: hidden; background: #0b0b10; border: 1px solid rgba(0, 0, 0, 0.14); aspect-ratio: 420 / 340; }
+    .polaroid-frame { border-radius: 8px; overflow: hidden; background: #0b0b10; border: 1px solid rgba(0, 0, 0, 0.14); aspect-ratio: 420 / 350; }
     .polaroid-cap { font-size: 10.5px; line-height: 1.48; color: #352f2a; margin-top: 7px; font-weight: 500; }
     .polaroid-dt { font-size: 9px; color: #7a7168; margin-top: 3px; font-variant-numeric: tabular-nums; }
 
     .knit-hero {
       border-radius: 22px; padding: 15px;
-      background: radial-gradient(circle at 86% 12%, rgba(244, 239, 232, 0.1), transparent 55%), linear-gradient(160deg, #191720, #111116);
+      background: radial-gradient(circle at 86% 12%, rgba(244, 239, 232, 0.1), transparent 55%), linear-gradient(160deg, #1a1821, var(--card));
       border: 1px solid rgba(214, 180, 124, 0.32);
     }
     .knit-stage-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 8px; }
@@ -337,7 +345,7 @@
     .sheet {
       width: 100%; max-height: 88%; overflow-y: auto; scrollbar-width: none;
       border-radius: 24px; padding: 16px 15px 20px;
-      background: #131319; border: 1px solid rgba(214, 180, 124, 0.34);
+      background: #14131a; border: 1px solid rgba(214, 180, 124, 0.34);
       box-shadow: 0 -16px 46px rgba(0, 0, 0, 0.9);
       animation: fadeUp 0.24s ease;
     }
@@ -407,7 +415,7 @@
         </div>
       </div>
       <div class="top-acts">
-        <button id="light-toggle-btn" type="button" class="light-btn">切换光影</button>
+        <button id="light-toggle-btn" type="button" class="light-btn">试看光影</button>
         <button id="top-amb-btn" type="button" class="icon-btn" aria-label="窗台白噪音"></button>
       </div>
     </header>
@@ -417,7 +425,7 @@
 
       <!-- ==================== TAB 1: 窗台微景 ==================== -->
       <section id="tab-win" class="stack" style="gap:8px">
-        <!-- 大视野 SVG 窗台（常驻 DOM，确保 C 位平移动画 60fps 丝滑） -->
+        <!-- 超大主视觉 SVG 窗台（viewBox 420x350，DOM 常驻确保 C 位平滑过渡） -->
         <div class="stage-wrap">
           <div class="stage-top-bar">
             <span id="stage-time-tag" class="stage-tag">午后暖阳 · 14:20</span>
@@ -429,25 +437,25 @@
           <div id="stage-bubble" class="stage-bubble"></div>
         </div>
 
-        <!-- 紧凑 C 位多肉状态条 -->
+        <!-- 紧凑暗金玻璃状态条 -->
         <div id="active-succ-bar" class="status-strip"></div>
 
-        <!-- 枯萎专属：迟川安抚与扦插卡片（仅在当前 C 位多肉枯萎时弹出） -->
+        <!-- 枯萎专属：迟川温柔安抚与扦插卡片（C 位多肉枯萎时呈现） -->
         <div id="rescue-slot" class="hidden"></div>
 
-        <!-- 1x4 一排操作按钮 -->
+        <!-- 1x4 极简操作按钮栏（首屏免滚可见） -->
         <div class="act-bar">
           <button type="button" id="act-water" class="act-mini">
             <span class="act-mini-ic green" id="ic-water"></span>
-            <span class="act-mini-lbl">浇温水</span>
+            <span class="act-mini-lbl" id="lbl-water">浇温水</span>
           </button>
           <button type="button" id="act-sun" class="act-mini">
             <span class="act-mini-ic" id="ic-sun"></span>
-            <span class="act-mini-lbl">晒太阳</span>
+            <span class="act-mini-lbl">转盆晒太阳</span>
           </button>
           <button type="button" id="act-wind" class="act-mini">
             <span class="act-mini-ic green" id="ic-wind"></span>
-            <span class="act-mini-lbl">轻通风</span>
+            <span class="act-mini-lbl">轻拂通风</span>
           </button>
           <button type="button" id="act-catch" class="act-mini">
             <span class="act-mini-ic rose" id="ic-catch"></span>
@@ -493,7 +501,7 @@
           <div class="row">
             <div>
               <div class="sec-t">不修图拍立得相册墙</div>
-              <div class="sec-s">原原本本封存每一刻真实光影、多肉阶段与迟川评语</div>
+              <div class="sec-s">定格真实光影、C位阶段与迟川随手写下的相片背面批注</div>
             </div>
             <span id="pol-cnt" class="pill dim">0 张</span>
           </div>
@@ -520,7 +528,7 @@
           <div class="row">
             <div>
               <div class="sec-t">迟琰专属衣柜</div>
-              <div class="sec-s">织满 100% 折入衣柜，并永久珍藏他藏了很久的手写长卡</div>
+              <div class="sec-s">织满 100% 折入衣柜，并永久珍藏他藏了很久的手写长卡片</div>
             </div>
             <span id="wardrobe-cnt" class="pill dim">0 件</span>
           </div>
@@ -530,56 +538,54 @@
 
       <!-- ==================== TAB 4: 窗台设置 ==================== -->
       <section id="tab-set" class="stack hidden">
-        <!-- 1. 专属桌面图标生成器（最上方醒目位置） -->
+        <!-- 1. 专属桌面图标生成器（最上方） -->
         <div class="card stack" style="gap:10px">
           <div class="row">
             <div>
               <div class="sec-t">专属桌面图标生成器</div>
-              <div class="sec-s">1024×1024 暗黑高奢方图 · 深夜拱窗弯月、胖熊童子与奶白毛线球</div>
+              <div class="sec-s">1024×1024 暗黑窗台月牙、熊童子与奶白毛线球圆角预览</div>
             </div>
             <span class="pill">icon.jpg</span>
           </div>
           <div class="icon-preview-wrap">
             <img id="iconPreviewImg" alt="迟川窗台 1024x1024 专属桌面图标" />
             <div style="font-size:11px;color:var(--muted);text-align:center;line-height:1.55">
-              点击一键下载；在 iPhone Safari 中也可直接<strong style="color:var(--gold-hi)">长按预览图</strong>保存到相册或文件。
+              支持 iPhone <strong style="color:var(--gold-hi)">长按预览图直接存入相册</strong>，或点下方下载后与 <code style="color:var(--gold-hi)">index.html</code> 同目录上传 GitHub 仓库即可显示桌面图标。
             </div>
             <button id="btn-dl-icon" type="button" class="btn gold">下载专属图标 (icon.jpg)</button>
           </div>
         </div>
 
-        <!-- 2. 多肉成长 & 状态体验面板 -->
+        <!-- 2. 多肉成长 & 状态快捷体验面板 -->
         <div class="card stack" style="gap:9px">
           <div class="row">
             <div>
-              <div class="sec-t">多肉成长 &amp; 状态体验面板</div>
-              <div id="test-target-sub" class="sec-s">当前作用于 C 位多肉 · 随时预览 6 阶段长大与发蔫枯萎形态</div>
+              <div class="sec-t">多肉成长 &amp; 状态快捷体验面板</div>
+              <div id="test-target-sub" class="sec-s">作用于当前 C 位多肉 · 随时体验全生命周期形态</div>
             </div>
             <span id="test-target-pill" class="pill green">小爪爪</span>
           </div>
           <div class="g2">
-            <button type="button" data-sim="grow" class="btn soft">催熟 +1 阶段（试看长大）</button>
-            <button type="button" data-sim="healthy" class="btn soft">一键恢复精神饱满</button>
-            <button type="button" data-sim="wilted" class="btn warn">体验 36h 未照料（变蔫）</button>
-            <button type="button" data-sim="withered" class="btn warn">体验 5 天未照料（枯萎）</button>
+            <button type="button" data-sim="grow" class="btn soft">催熟升一级</button>
+            <button type="button" data-sim="healthy" class="btn green-soft">一键恢复满状态</button>
+            <button type="button" data-sim="wilted" class="btn warn">模拟 36h 发蔫</button>
+            <button type="button" data-sim="withered" class="btn warn">模拟 5 天枯萎</button>
           </div>
-          <button type="button" data-sim="resetLv1" class="btn">回到 Lv.1 初生小芽</button>
-          <div class="sec-s" style="font-size:10.5px;color:var(--dim)">仅用于预览不同生长与健康形态，不影响拍立得与衣柜。</div>
         </div>
 
-        <!-- 3. Web Audio 纯本地声效与窗台白噪音 -->
+        <!-- 3. 纯本地 Web Audio 音效与氛围白噪音 -->
         <div class="card stack" style="gap:10px">
           <div class="row">
             <div>
               <div class="sec-t">声音总开关（Web Audio 纯本地合成）</div>
-              <div class="sec-s">零外部音频依赖，细腻还原窗台与手织质感</div>
+              <div class="sec-s">零外部音频依赖，本地实时合成细腻窗台音效</div>
             </div>
             <button id="sw-sfx" type="button" class="sw on" aria-label="声音总开关"><i></i></button>
           </div>
           <div class="row" style="padding-top:9px;border-top:1px solid var(--line-soft)">
             <div>
               <div class="sec-t">窗台白噪音（微风细雨 + 竹针 + 62 BPM 心跳）</div>
-              <div class="sec-s">柔风细雨、竹针轻碰与贴耳平稳胸腔心跳</div>
+              <div class="sec-s">窗外柔风细雨、竹针轻敲与贴耳平稳胸腔心跳</div>
             </div>
             <button id="sw-amb" type="button" class="sw" aria-label="白噪音开关"><i></i></button>
           </div>
@@ -591,42 +597,51 @@
           </div>
           <div class="g2">
             <button type="button" data-tsfx="water" class="btn soft">浇水声</button>
-            <button type="button" data-tsfx="knit" class="btn soft">竹针轻敲</button>
-            <button type="button" data-tsfx="shutter" class="btn soft">拍立得快门</button>
+            <button type="button" data-tsfx="knit" class="btn soft">竹针声</button>
+            <button type="button" data-tsfx="shutter" class="btn soft">快门声</button>
             <button type="button" data-tsfx="soil" class="btn soft">翻土扦插声</button>
           </div>
-          <button type="button" data-tsfx="chime" class="btn soft">温暖和弦</button>
+          <button type="button" data-tsfx="chime" class="btn soft">织成和弦</button>
         </div>
 
-        <!-- 4. Gemini API 双引擎配置 -->
+        <!-- 4. 全新升级：Gemini 3.5 自适应双引擎配置 -->
         <div class="card stack" style="gap:10px">
           <div class="row">
             <div>
-              <div class="sec-t">启用 Gemini API 双引擎</div>
-              <div class="sec-s">开启后便利贴回信、抓包剧场与拍立得评语实时生成；未开启或断网自动使用本地词库</div>
+              <div class="sec-t">Gemini API 双引擎（3.5 自适应版）</div>
+              <div class="sec-s">默认采用最新免费 3.5 系列；未开启或断网自动无缝回退本地深度词库</div>
             </div>
-            <button id="sw-ai" type="button" class="sw" aria-label="Gemini API 开关"><i></i></button>
+            <button id="sw-ai" type="button" class="sw" aria-label="启用 Gemini API"><i></i></button>
           </div>
+
           <div>
             <div class="sec-s" style="margin-bottom:5px">Google AI Studio API Key（仅存本机 localStorage）</div>
             <div style="display:flex;gap:6px">
-              <input id="api-key" class="inp" type="password" autocomplete="off" placeholder="粘贴免费 AIzaSy... 密钥" />
+              <input id="api-key" class="inp" type="password" autocomplete="off" placeholder="粘贴你的免费 AIzaSy... 密钥" />
               <button id="api-eye" type="button" class="pill" style="padding:0 12px;border-radius:12px">显示</button>
             </div>
           </div>
+
           <div>
-            <div class="sec-s" style="margin-bottom:5px">模型选择</div>
-            <select id="api-model" class="inp">
-              <option value="gemini-2.5-flash">gemini-2.5-flash（推荐）</option>
-              <option value="gemini-2.5-pro">gemini-2.5-pro</option>
-              <option value="gemini-2.0-flash">gemini-2.0-flash</option>
-            </select>
+            <div class="row" style="margin-bottom:5px">
+              <span class="sec-s">选择模型（支持一键动态拉取最新可用列表）</span>
+              <span id="active-model-badge" class="pill dim" style="font-size:9.5px">gemini-3.5-flash-lite</span>
+            </div>
+            <select id="api-model" class="inp"></select>
           </div>
+
+          <button id="btn-fetch-models" type="button" class="btn green-soft">✦ 一键拉取当前密钥可用模型</button>
+
+          <div>
+            <div class="sec-s" style="margin-bottom:5px">手动指定模型名（选填 · 填写后优先使用，留空则用上方下拉框）</div>
+            <input id="api-model-custom" class="inp" type="text" autocomplete="off" placeholder="如：gemini-3.5-flash-lite（留空默认用下拉框）" />
+          </div>
+
           <div class="g2">
             <button id="btn-save-api" type="button" class="btn gold">保存配置</button>
             <button id="btn-test-api" type="button" class="btn soft">一键测试连接</button>
           </div>
-          <div id="api-msg" class="sec-s" style="min-height:16px"></div>
+          <div id="api-msg" class="sec-s" style="min-height:18px;word-break:break-word"></div>
         </div>
       </section>
     </main>
@@ -667,6 +682,7 @@
       knit: '<circle cx="12" cy="13" r="6.5"/><path d="M7.5 10.5c3-1 6.5 0.5 9.5 3.5M7 14.5c3.5-0.8 7 0.2 9.5 2"/><path d="M16.5 4.5L7.5 19.5M7.5 4.5l9 15"/>',
       set: '<circle cx="12" cy="12" r="3"/><path d="M12 2.5v2.2M12 19.3v2.2M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"/>',
       water: '<path d="M12 3.2c-3.4 4.7-6 7.8-6 11a6 6 0 1 0 12 0c0-3.2-2.6-6.3-6-11z"/>',
+      sprout: '<path d="M12 21v-8"/><path d="M12 13c-3.5 0-6-2.5-6-5.5 3.2 0 6 2.2 6 5.5z"/><path d="M12 11c3.2 0 5.5-2.2 5.5-5-3 0-5.5 2-5.5 5z"/>',
       sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M4.5 12H2M22 12h-2.5M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M18.4 5.6l-1.8 1.8M7.4 16.6l-1.8 1.8"/>',
       wind: '<path d="M3 8.5h11.5a2.5 2.5 0 1 0-2.5-2.5"/><path d="M3 13h15a2.5 2.5 0 1 1-2.5 2.5"/><path d="M3 17.5h8.5a2 2 0 1 1-2 2"/>',
       basket: '<path d="M5 11h14l-1.5 8.5a2 2 0 0 1-2 1.5h-7a2 2 0 0 1-2-1.5L5 11z"/><path d="M8.5 11L11 5.5M15.5 11L13 5.5M4 11h16"/>',
@@ -755,7 +771,6 @@
           bambooTap(c, 0.125, 0.115);
           bambooTap(c, 0.255, 0.155);
         } else if (kind === 'soil') {
-          // 细腻的颗粒土翻松与轻压扦插声
           [0, 0.18].forEach((dl, idx) => {
             const t = now + dl;
             const src = c.createBufferSource(); src.buffer = softNoise(c, 0.24, true);
@@ -764,7 +779,7 @@
             g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(0.16, t + 0.04); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.22);
             src.connect(bp); bp.connect(g); g.connect(c.destination); src.start(t); src.stop(t + 0.24);
           });
-          setTimeout(() => play('chime'), 340);
+          setTimeout(() => play('water'), 300);
         } else if (kind === 'chime') {
           [523.25, 659.25, 783.99, 1046.5].forEach((f, idx) => {
             const t = now + idx * 0.072;
@@ -832,8 +847,16 @@
     })();
 
     /* =========================================================================
-       三、核心配置数据：5档真实昼夜、3盆多肉、6阶段成长、毛衣作品与词库
+       三、核心配置数据：5档真实昼夜、3盆多肉、6阶段成长、3件织物与词库
        ========================================================================= */
+    const DEFAULT_MODEL = 'gemini-3.5-flash-lite';
+    const PRESET_MODELS = [
+      { id: 'gemini-3.5-flash-lite', label: 'gemini-3.5-flash-lite（免费推荐）' },
+      { id: 'gemini-3.5-flash', label: 'gemini-3.5-flash' },
+      { id: 'gemini-3.0-flash', label: 'gemini-3.0-flash' },
+      { id: 'gemini-3.5-pro', label: 'gemini-3.5-pro' }
+    ];
+
     const LIGHT_PHASES = [
       {
         id: 'dawn', name: '清晨微曦', span: '05:30–08:30',
@@ -841,8 +864,8 @@
         beam: 'rgba(250, 212, 174, 0.25)', sillTop: '#2d2522', sillBot: '#131011',
         stars: 0.22, moon: false, sunX: 306, sunY: 146, sunCol: '#fbd0a4', lamp: 0.18,
         notes: [
-          '清晨第一缕紫橘柔光刚好落进窗台，热牛奶温在桌边，宝宝醒了再慢慢过来照看小芽。',
-          '晨泳完回来顺手替花架开了半扇通风缝，早晨的空气清润干净，今天记得穿暖和些。'
+          '清晨第一缕紫橘柔光落进窗台，温热的牛奶放在餐桌边，宝宝醒了再慢慢来照看这几盆小芽。',
+          '晨泳回来顺手替花架开了半扇通风缝，早上的风清润干净，出门记得多带件外套。'
         ]
       },
       {
@@ -851,8 +874,8 @@
         beam: 'rgba(255, 246, 220, 0.28)', sillTop: '#2e2a25', sillBot: '#141212',
         stars: 0, moon: false, sunX: 292, sunY: 78, sunCol: '#fff5d6', lamp: 0,
         notes: [
-          '上午十点的清澈暖光照进花盆里，最适合多肉攒下饱满的光合能量。我在新岚盯着评审，午后早点回家陪你。',
-          '林助理刚订好下午的无麸质小甜品。忙完这一小段记得来窗台摸摸小叶子歇一歇眼睛。'
+          '上午十点的清澈暖光照进盆里，正适合多肉攒下饱满的光合能量。我在新岚盯着评审，午后早点回家陪你。',
+          '林助理刚订好下午的无麸质小甜点。忙完这一小段记得来窗台摸摸小叶子歇歇眼睛。'
         ]
       },
       {
@@ -861,8 +884,8 @@
         beam: 'rgba(250, 220, 156, 0.34)', sillTop: '#332b22', sillBot: '#141111',
         stars: 0, moon: false, sunX: 280, sunY: 70, sunCol: '#ffe8b0', lamp: 0,
         notes: [
-          '午后懒洋洋的暖金光束铺满窗台，空气里飘着细小的尘光。宝宝困了就裹着毯子小憩二十分钟，我替你看着时间。',
-          '阳光把花盆烘得温温热热，三盆小家伙正悄悄往外冒新叶。傍晚我绕路买你喜欢的鲜虾和甜点回家。'
+          '午后懒洋洋的暖金光束铺满窗台，空气里飘着细碎尘光。宝宝困了就裹着毯子小憩二十分钟，爸爸替你看着时间。',
+          '阳光把陶盆烘得温温热热，三盆小家伙正悄悄往外冒新叶。傍晚我绕路买你喜欢的鲜虾和甜品回家。'
         ]
       },
       {
@@ -871,8 +894,8 @@
         beam: 'rgba(248, 160, 104, 0.31)', sillTop: '#35241f', sillBot: '#141010',
         stars: 0.16, moon: false, sunX: 298, sunY: 138, sunCol: '#ffb173', lamp: 0.44,
         notes: [
-          '琥珀色斜阳把藤编毛线篮镀上一层橘金边。我刚收尾最后一个会，正往咱们家的方向开，晚霞留着我们一起看。',
-          '傍晚的微风带着温柔暖意，窗台光影正好。把今天的疲惫统统放在门外，爸爸很快到家抱你。'
+          '琥珀色斜阳把藤编毛线篮镀上一层橘金边。我刚收尾最后一个会，正往家的方向开，晚霞留着我们一起看。',
+          '傍晚微风带着温柔暖意，窗台光影正好。把今天的疲惫统统放在门外，爸爸很快到家抱你。'
         ]
       },
       {
@@ -888,19 +911,19 @@
     ];
 
     const STAGES = [
-      { lv: 1, name: '初生小芽', req: 30 },
-      { lv: 2, name: '抽芽展叶', req: 70 },
-      { lv: 3, name: '稳步生根', req: 120 },
-      { lv: 4, name: '渐显状态', req: 185 },
-      { lv: 5, name: '饱满上色', req: 260 },
-      { lv: 6, name: '极致爆盆', req: 260 }
+      { lv: 1, name: '初生双叶小芽', req: 30 },
+      { lv: 2, name: '抽芽幼苗', req: 70 },
+      { lv: 3, name: '稳步舒展', req: 120 },
+      { lv: 4, name: '上色成株', req: 185 },
+      { lv: 5, name: '饱满爆盆', req: 260 },
+      { lv: 6, name: '绝美满冠', req: 260 }
     ];
 
     const SUCC_META = [
       {
         id: 'bear', name: '熊童子', nick: '小爪爪', pot: '奶油白陶盆',
         note: '绒毛厚叶喜干怕闷。循序控水配温差光照，肥厚小爪叶尖会一点点晕出鲜明的红褐爪印，毛茸茸得让人忍不住多看两眼。',
-        breeze: '清风轻擦过熊童子的细绒毛，小爪爪轻轻晃了晃。我拿软刷拂掉一点浮尘，叶片挺拔精神。'
+        breeze: '清风轻擦过熊童子的细绒毛，小爪爪轻轻晃了晃。我拿软刷拂掉浮尘，叶片挺拔精神。'
       },
       {
         id: 'peach', name: '桃蛋', nick: '圆滚滚', pot: '浅粉釉面圆盆',
@@ -916,7 +939,7 @@
 
     const KNIT_PROJECTS = [
       {
-        id: 'sweater', name: '《奶白色高支山羊绒毛衣》', short: '奶白羊绒毛衣', kind: 'sweater', targetCm: 120.0,
+        id: 'sweater', name: '《奶白色山羊绒毛衣》', short: '奶白羊绒毛衣', kind: 'sweater', targetCm: 120.0,
         color: '#f3eee6', stroke: '#cfc1ab',
         stages: ['下摆罗纹', '衣身平针', '双袖编织', '领口收针'],
         cardTitle: '《藏在奶白羊绒针脚里的手写长卡》',
@@ -924,15 +947,15 @@
         cardVoice: '（嗓音低沉温柔，带着终于收完最后一针的轻笑）赶在降温前彻底完工了，宝宝。快套上试试柔软度，爸爸先抱紧你验收一下温度。'
       },
       {
-        id: 'scarf', name: '《燕麦色双面提花羊绒围巾》', short: '燕麦羊绒围巾', kind: 'scarf', targetCm: 160.0,
+        id: 'scarf', name: '《燕麦色流苏羊绒围巾》', short: '燕麦流苏围巾', kind: 'scarf', targetCm: 160.0,
         color: '#e5d8c5', stroke: '#bfa98a',
         stages: ['流苏起针', '双面提花', '加厚主段', '收边锁针'],
         cardTitle: '《挡住冬日冷风的燕麦色手写长笺》',
-        cardBody: '我的琰琰：\n\n见你每次晚风起凉时总爱把下巴往衣领里缩，我便在毛线篮里起了这条足足 160 厘米的燕麦色双面提花羊绒围巾。\n\n双面提花厚实却不压肩，绕两圈刚好把你的脖颈和耳垂严严实实护住。长长的针织时光让我每天深夜都多了一段安静想你的空档，出门记得绕暖和，绝不让一丝寒风钻进宝宝领口。',
+        cardBody: '我的琰琰：\n\n见你每次晚风起凉时总爱把下巴往衣领里缩，我便在毛线篮里起了这条足足 160 厘米的燕麦色流苏羊绒围巾。\n\n双面提花厚实却不压肩，绕两圈刚好把你的脖颈和耳垂严严实实护住。长长的针织时光让我每天深夜都多了一段安静想你的空档，出门记得绕暖和，绝不让一丝寒风钻进宝宝领口。',
         cardVoice: '（温柔低笑，仿佛正亲手替你系好围巾）特意织了双倍长度，天冷散步时刚好把爸爸也一起绕进去。'
       },
       {
-        id: 'socks', name: '《焦糖色加厚居家羊绒暖袜》', short: '焦糖居家暖袜', kind: 'socks', targetCm: 80.0,
+        id: 'socks', name: '《焦糖色居家羊绒暖袜》', short: '焦糖居家暖袜', kind: 'socks', targetCm: 80.0,
         color: '#cfa278', stroke: '#a4754a',
         stages: ['松软袜口', '罗纹袜筒', '立体袜跟', '圆润袜尖'],
         cardTitle: '《给爱踢被子宝宝的焦糖暖袜卡片》',
@@ -984,7 +1007,7 @@
     ];
 
     /* =========================================================================
-       四、全局持久化状态 & 独立永久停留语音转文字状态机
+       四、全局持久化状态、旧模型平滑迁移 & 永久停留语音转文字状态机
        ========================================================================= */
     const LS = { STATE: 'cc_win_life_v1', CFG: 'cc_win_life_cfg_v1' };
     const rLS = (k, fb) => { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : fb; } catch { return fb; } };
@@ -1006,7 +1029,6 @@
         startDate: today,
         lastAutoDate: today,
         activeSucc: 'bear',
-        // 三盆多肉从 Lv.1 初生小芽起步，方便清晰体验从 1 粒小芽一路长到爆盆的成就感
         succs: {
           bear: { stage: 0, exp: 8, gen: 1, water: 76, sun: 52, blush: 22, care: 1, lastCareTs: now, history: [] },
           peach: { stage: 1, exp: 38, gen: 1, water: 72, sun: 58, blush: 34, care: 3, lastCareTs: now, history: [] },
@@ -1031,8 +1053,12 @@
       lastReply: null,
       svgMounted: false,
       data: Object.assign(defaultData(), rLS(LS.STATE, {})),
-      cfg: Object.assign({ sfx: true, ambVol: 65, aiOn: false, apiKey: '', model: 'gemini-2.5-flash' }, rLS(LS.CFG, {}))
+      cfg: Object.assign(
+        { sfx: true, ambVol: 65, aiOn: false, apiKey: '', model: DEFAULT_MODEL, customModel: '', fetchedModels: [] },
+        rLS(LS.CFG, {})
+      )
     };
+
     ['bear', 'peach', 'aeonium'].forEach(k => {
       const def = defaultData().succs[k];
       ST.data.succs[k] = Object.assign(def, ST.data.succs[k] || {});
@@ -1041,12 +1067,34 @@
     if (!Array.isArray(ST.data.unravels)) ST.data.unravels = [];
     if (!Array.isArray(ST.data.wardrobe)) ST.data.wardrobe = [];
     if (!Array.isArray(ST.data.polaroids)) ST.data.polaroids = [];
+    if (!Array.isArray(ST.cfg.fetchedModels)) ST.cfg.fetchedModels = [];
     ST.data.stats = Object.assign({ water: 0, sun: 0, wind: 0, catch: 0, accompany: 0 }, ST.data.stats || {});
 
     const saveData = () => wLS(LS.STATE, ST.data);
     const saveCfg = () => wLS(LS.CFG, ST.cfg);
 
-    // 独立永久停留语音状态机
+    // 启动自动迁移：若检测到旧缓存里的 gemini-2.x 或 gemini-1.x，自动平滑迁移至 gemini-3.5-flash-lite
+    function migrateLegacyModels() {
+      let changed = false;
+      if (!ST.cfg.model || /gemini-[12]\./i.test(ST.cfg.model)) {
+        ST.cfg.model = DEFAULT_MODEL;
+        changed = true;
+      }
+      if (ST.cfg.customModel && /gemini-[12]\./i.test(ST.cfg.customModel)) {
+        ST.cfg.customModel = '';
+        changed = true;
+      }
+      if (changed) saveCfg();
+    }
+    migrateLegacyModels();
+
+    function getActiveModel() {
+      const custom = (ST.cfg.customModel || '').trim().replace(/^models\//i, '');
+      if (custom) return custom;
+      return (ST.cfg.model || DEFAULT_MODEL).trim().replace(/^models\//i, '');
+    }
+
+    // 独立永久停留语音状态机（展开打字完成后永久停留，仅点「收起」隐藏）
     const vState = {};
     const vTimers = {};
 
@@ -1115,7 +1163,7 @@
     let toastT = null;
     function toast(msg) {
       const el = $('toast'); el.textContent = msg; el.classList.add('show');
-      clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove('show'), 2600);
+      clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove('show'), 2700);
     }
 
     let bubbleT = null;
@@ -1126,7 +1174,7 @@
     }
 
     /* =========================================================================
-       五、真实光影、健康状态判定（36h 发蔫 / 120h 枯萎）与自然日毛衣推进
+       五、真实昼夜、健康状态判定（36h 发蔫 / 120h 枯萎）与自然日成长推进
        ========================================================================= */
     function daysTogether() {
       const a = new Date((ST.data.startDate || todayISO()) + 'T00:00:00');
@@ -1137,11 +1185,11 @@
     function getRealPhaseIndex() {
       const d = new Date();
       const mins = d.getHours() * 60 + d.getMinutes();
-      if (mins >= 330 && mins < 510) return 0;   // 05:30-08:30 清晨微曦
-      if (mins >= 510 && mins < 720) return 1;   // 08:30-12:00 上午晴光
-      if (mins >= 720 && mins < 960) return 2;   // 12:00-16:00 午后暖阳
-      if (mins >= 960 && mins < 1130) return 3;  // 16:00-18:50 落日橘金
-      return 4;                                  // 18:50-05:30 深夜台灯星月
+      if (mins >= 330 && mins < 510) return 0;
+      if (mins >= 510 && mins < 720) return 1;
+      if (mins >= 720 && mins < 960) return 2;
+      if (mins >= 960 && mins < 1130) return 3;
+      return 4;
     }
 
     function currentPhase() {
@@ -1152,7 +1200,6 @@
       return KNIT_PROJECTS[ST.data.knitIdx % KNIT_PROJECTS.length];
     }
 
-    // 严格依据 lastCareTs 判定健康状态：<36h 健康 | 36h~120h 缺水发蔫 | >=120h 枯萎休眠
     function getHealth(s) {
       const hrs = Math.max(0, (Date.now() - (s.lastCareTs || Date.now())) / 3600000);
       if (hrs >= 120) return 'withered';
@@ -1186,8 +1233,12 @@
       if (diffDays <= 0) return;
 
       ['bear', 'peach', 'aeonium'].forEach(k => {
-        ST.data.succs[k].water = Math.max(12, ST.data.succs[k].water - diffDays * 14);
+        const s = ST.data.succs[k];
+        s.water = Math.max(12, s.water - diffDays * 14);
+        // 若多肉仍处于健康状态，真实共养天数也会缓慢滋养成长值
+        if (getHealth(s) === 'healthy') addSuccExp(k, diffDays * 10);
       });
+
       const proj = currentProject();
       if (ST.data.knitCm < proj.targetCm) {
         const gain = Number((diffDays * (3.2 + Math.random() * 1.8)).toFixed(1));
@@ -1204,16 +1255,15 @@
     }
 
     /* =========================================================================
-       六、参数化 6 阶段成长 + 发蔫/枯萎专属形态 SVG 绘图引擎
+       六、参数化 6 阶段成长 + 发蔫/枯萎专属形态 SVG 绘图引擎（viewBox 420x350）
        ========================================================================= */
     function potBodySVG(id, health) {
       const dryCrack = health !== 'healthy'
         ? `<path d="M-14 -31 L-6 -29 L-2 -32 M6 -30 L13 -31 M-4 -30 L3 -28" stroke="#3c332d" stroke-width="0.95" fill="none"/>`
         : '';
-      const soilFill = health === 'withered' ? '#2c2623' : health === 'wilted' ? '#433830' : '#3a2d24';
+      const soilFill = health === 'withered' ? '#2a2420' : health === 'wilted' ? '#453930' : '#3a2d24';
 
       if (id === 'bear') {
-        // 奶油白陶盆
         return `
           <ellipse cx="0" cy="2" rx="26" ry="5.2" fill="rgba(0,0,0,0.48)"/>
           <path d="M-24 -32 L24 -32 L19 0 Q0 4 -19 0 Z" fill="#ece5da" stroke="rgba(214,180,124,0.45)" stroke-width="1.1"/>
@@ -1223,7 +1273,6 @@
           ${dryCrack}`;
       }
       if (id === 'peach') {
-        // 浅粉釉面圆盆
         return `
           <ellipse cx="0" cy="3" rx="27" ry="5.5" fill="rgba(0,0,0,0.48)"/>
           <path d="M-27 -30 Q-29 3 0 6 Q29 3 27 -30 Z" fill="#e7ccd0" stroke="rgba(214,180,124,0.42)" stroke-width="1.1"/>
@@ -1232,7 +1281,6 @@
           <ellipse cx="0" cy="-30" rx="22" ry="3.8" fill="${soilFill}"/>
           ${dryCrack}`;
       }
-      // 黑金极简方盆（黑法师）
       return `
         <ellipse cx="0" cy="2" rx="25" ry="5" fill="rgba(0,0,0,0.52)"/>
         <path d="M-23 -34 L23 -34 L19 0 L-19 0 Z" fill="#18171e" stroke="rgba(214,180,124,0.52)" stroke-width="1.15"/>
@@ -1242,7 +1290,6 @@
         ${dryCrack}`;
     }
 
-    // 专属枯萎形态（超过 5 天未照料：干枯蜷缩焦褐灰白 + 地上落叶）
     function witheredPlantSVG() {
       return `
         <g transform="translate(0,-32)">
@@ -1252,11 +1299,9 @@
           <path d="M3 -19 C-2 -23 6 -25 8 -20 C9 -16 5 -16 3 -19 Z" fill="#9a8f83" stroke="#534b43" stroke-width="0.8"/>
           <path d="M-3 -7 C-7 -4 -2 0 1 -4 Z" fill="#685e53"/>
         </g>
-        <!-- 飘落在盆边的一片干枯落叶 -->
         <path d="M24 0 C30 -4 36 -1 32 3 C29 5 24 3 24 0 Z" fill="#7a7064" stroke="#4f473f" stroke-width="0.7"/>`;
     }
 
-    // 专属缺水发蔫形态（超过 36 小时未照料：整体大幅下垂弯折、灰暗褪色 + 缺水警示）
     function wiltedPlantSVG(id, stage) {
       const n = Math.max(2, Math.min(5, stage + 2));
       const baseCol = id === 'peach' ? '#958287' : id === 'aeonium' ? '#6d5e64' : '#738276';
@@ -1280,7 +1325,6 @@
             <circle cx="0" cy="0" r="4.8" fill="#6f7d6e"/>
           </g>`;
       } else {
-        // 熊童子发蔫低垂
         leaves = `
           <path d="M-2 -4 C-16 -12 -28 -6 -29 5 C-22 6 -13 1 -2 -4 Z" fill="${darkCol}" stroke="#4c584f" stroke-width="0.8"/>
           <path d="M2 -4 C16 -12 28 -6 29 5 C22 6 13 1 2 -4 Z" fill="${darkCol}" stroke="#4c584f" stroke-width="0.8"/>
@@ -1290,24 +1334,22 @@
       }
       return `
         <g transform="translate(0,-32)">${leaves}</g>
-        <!-- 微弱缺水警示水滴 -->
         <g class="float-warn" transform="translate(22, -62)">
           <circle cx="0" cy="0" r="8.5" fill="rgba(217,107,117,0.22)" stroke="rgba(255,191,197,0.75)" stroke-width="1"/>
           <path d="M0 -4.2 C-2.4 -1 -3.4 0.8 -3.4 2.2 A3.4 3.4 0 1 0 3.4 2.2 C3.4 0.8 2.4 -1 0 -4.2 Z" fill="#ffb8c0"/>
         </g>`;
     }
 
-    // 6 阶段健康成长多肉 SVG（stage 0 = 娇小双叶初生芽 -> stage 5 = 10~12片溢出爆盆 + 微光）
     function healthyPlantSVG(id, stage) {
       const sparkles = stage === 5 ? `
         <g fill="#f6e3b9" class="st-tw">
-          <path d="M-32 -54 l1.5 3.5 l3.5 1.5 l-3.5 1.5 l-1.5 3.5 l-1.5-3.5 l-3.5-1.5 l3.5-1.5z"/>
-          <path d="M33 -48 l1.3 3 l3 1.3 l-3 1.3 l-1.3 3 l-1.3-3 l-3-1.3 l3-1.3z"/>
-          <circle cx="0" cy="-64" r="1.8"/>
+          <path d="M-32 -56 l1.5 3.5 l3.5 1.5 l-3.5 1.5 l-1.5 3.5 l-1.5-3.5 l-3.5-1.5 l3.5-1.5z"/>
+          <path d="M33 -50 l1.3 3 l3 1.3 l-3 1.3 l-1.3 3 l-1.3-3 l-3-1.3 l3-1.3z"/>
+          <circle cx="0" cy="-66" r="1.9"/>
         </g>` : '';
 
       if (id === 'bear') {
-        const tipCol = ['#8fb89a', '#9fc1a4', '#b9937e', '#cd6f65', '#be4946', '#a42d32'][stage];
+        const tipCol = ['#8fb89a', '#9fc1a4', '#ba8c76', '#cd685e', '#bc4544', '#a02b30'][stage];
         const paw = (x, y, rx, ry, rot, fill, showTip) => `
           <g transform="translate(${x},${y}) rotate(${rot})">
             <ellipse cx="0" cy="${-ry * 0.72}" rx="${rx}" ry="${ry}" fill="${fill}" stroke="#5f8669" stroke-width="0.85"/>
@@ -1318,34 +1360,29 @@
               <circle cx="${rx * 0.45}" cy="${-ry * 1.56}" r="${Math.max(1.5, rx * 0.22)}" fill="${tipCol}"/>
             ` : ''}
           </g>`;
-        const hasTip = stage >= 3;
+        const hasTip = stage >= 2;
         let p = '';
         if (stage === 0) {
-          // Lv.1 极娇小双叶初生小芽
           p = paw(-3, -1, 4.2, 6.8, -28, '#95c2a0', false) + paw(3, -1, 4.2, 6.8, 28, '#a6cfa9', false);
         } else if (stage === 1) {
-          // Lv.2 抽芽展叶（4片小叶）
-          p = paw(-8, -1, 5.2, 9, -46, '#7da788', false) + paw(8, -1, 5.2, 9, 46, '#84ae8f', false)
-            + paw(-3, -3, 5.5, 10.5, -18, '#9cc7a6', false) + paw(3, -3, 5.5, 10.5, 18, '#a8d1b1', false);
+          p = paw(-8, -1, 5.2, 9.2, -46, '#7da788', false) + paw(8, -1, 5.2, 9.2, 46, '#84ae8f', false)
+            + paw(-3, -3, 5.6, 10.8, -18, '#9cc7a6', false) + paw(3, -3, 5.6, 10.8, 18, '#a8d1b1', false);
         } else if (stage === 2) {
-          // Lv.3 稳步生根（5片圆润胖叶）
-          p = paw(-12, -1, 6.5, 12, -52, '#7ba486', false) + paw(12, -1, 6.5, 12, 52, '#80aa8b', false)
-            + paw(-6, -4, 7, 14, -22, '#95c19f', false) + paw(6, -4, 7, 14, 22, '#9ec9a8', false)
-            + paw(0, -6, 7.2, 15, 0, '#afd6b8', false);
+          p = paw(-13, -1, 6.5, 12, -54, '#7ba486', true) + paw(13, -1, 6.5, 12, 54, '#80aa8b', true)
+            + paw(-7, -4, 7, 14, -24, '#95c19f', true) + paw(7, -4, 7, 14, 24, '#9ec9a8', true)
+            + paw(-2, -6, 7.2, 15, -6, '#abd2b4', true) + paw(3, -5, 6.8, 13.8, 10, '#b3dab9', true);
         } else if (stage === 3) {
-          // Lv.4 渐显状态（7片饱满 + 红爪尖初现）
           p = paw(-17, 0, 7.2, 13.5, -62, '#769f82', true) + paw(17, 0, 7.2, 13.5, 62, '#7aa486', true)
             + paw(-11, -4, 7.8, 16, -34, '#8db998', true) + paw(11, -4, 7.8, 16, 34, '#94bf9f', true)
             + paw(-4, -6, 8, 17, -12, '#a3cca9', true) + paw(4, -6, 8, 17, 12, '#aad2b2', true)
-            + paw(0, -8, 8.2, 18, 0, '#b6dcbf', true);
+            + paw(0, -8, 8.2, 18.5, 0, '#b6dcbf', true);
         } else if (stage === 4) {
-          // Lv.5 饱满上色（8片错落大胖爪 + 醒目红爪印）
           p = paw(-21, 0, 8, 15, -68, '#729c7e', true) + paw(21, 0, 8, 15, 68, '#76a082', true)
             + paw(-14, -5, 8.8, 18.5, -40, '#89b694', true) + paw(14, -5, 8.8, 18.5, 40, '#90bc9b', true)
             + paw(-6, -8, 9, 20.5, -16, '#9fc9a8', true) + paw(6, -8, 9, 20.5, 16, '#a7d0b0', true)
-            + paw(-1, -10, 9.2, 22, -4, '#b2d9bb', true) + paw(2, -9, 8.5, 19, 8, '#bce1c4', true);
+            + paw(-2, -10, 9.2, 22, -5, '#b2d9bb', true) + paw(3, -9, 8.6, 19.5, 9, '#bce1c4', true)
+            + paw(0, -3, 7.2, 12, 0, '#a6cfa9', true);
         } else {
-          // Lv.6 极致爆盆（11片茂密溢出花盆大冠幅 + 微光）
           p = paw(-26, 2, 8.4, 15.5, -76, '#6b9477', true) + paw(26, 2, 8.4, 15.5, 76, '#6e987a', true)
             + paw(-21, -3, 9.2, 19, -54, '#7ea98a', true) + paw(21, -3, 9.2, 19, 54, '#83ae8f', true)
             + paw(-13, -7, 9.6, 22, -30, '#92be9d', true) + paw(13, -7, 9.6, 22, 30, '#98c4a3', true)
@@ -1379,7 +1416,7 @@
         } else if (stage === 2) {
           p = egg(-13, -7, 8, 7.6, -34, pal[0]) + egg(13, -7, 8, 7.6, 34, pal[0])
             + egg(-7, -16, 8, 9, -15, pal[1]) + egg(7, -16, 8, 9, 15, pal[1])
-            + egg(0, -10, 7.8, 7.8, 0, pal[1]);
+            + egg(0, -19, 7.5, 8.2, 0, pal[1]) + egg(0, -9, 7.8, 7.8, 0, pal[1]);
         } else if (stage === 3) {
           p = egg(-18, -8, 9.6, 8.2, -32, pal[0]) + egg(18, -8, 9.6, 8.2, 32, pal[0])
             + egg(-10, -20, 9.2, 10.5, -16, pal[0]) + egg(10, -20, 9.2, 10.5, 16, pal[0])
@@ -1388,9 +1425,9 @@
           p = egg(-22, -8, 11, 9, -34, pal[0]) + egg(22, -8, 11, 9, 34, pal[0])
             + egg(-15, -22, 10.5, 11.5, -22, pal[0]) + egg(15, -22, 10.5, 11.5, 22, pal[0])
             + egg(0, -30, 10.2, 11, 0, pal[1]) + egg(-8, -14, 10.5, 9.8, -10, pal[1])
-            + egg(8, -14, 10.5, 9.8, 10, pal[1]) + egg(0, -20, 9.8, 9.8, 0, '#ffd4df');
+            + egg(8, -14, 10.5, 9.8, 10, pal[1]) + egg(0, -20, 9.8, 9.8, 0, '#ffd4df')
+            + egg(-12, -6, 8.5, 7.5, -18, pal[1]);
         } else {
-          // Lv.6 极致爆盆（12颗果冻粉桃蛋溢满花盆）
           p = egg(-27, -6, 11.5, 9.2, -38, pal[0]) + egg(27, -6, 11.5, 9.2, 38, pal[0])
             + egg(-22, -20, 11.2, 11.5, -28, pal[0]) + egg(22, -20, 11.2, 11.5, 28, pal[0])
             + egg(-12, -32, 11, 12.2, -16, pal[0]) + egg(12, -32, 11, 12.2, 16, pal[0])
@@ -1402,7 +1439,6 @@
         return `<g transform="translate(0,-30)">${p}</g>${sparkles}`;
       }
 
-      // 黑法师（aeonium）：从嫩绿双芽到深紫红双层大莲座爆盆皇冠
       const outer = ['#6f8c6e', '#657863', '#614a56', '#5e2b3f', '#4f1930', '#3d1025'][stage];
       const mid = ['#8cb089', '#81977d', '#825d6d', '#853c56', '#7a2544', '#691936'][stage];
       const rosette = (cx, cy, count, rLen, rWid, innerCount, coreR) => {
@@ -1426,13 +1462,12 @@
       } else if (stage === 1) {
         p = `<line x1="0" y1="0" x2="0" y2="-12" stroke="#554542" stroke-width="3"/>` + rosette(0, -14, 4, 8.5, 4.4, 0, 3.6);
       } else if (stage === 2) {
-        p = `<line x1="0" y1="0" x2="0" y2="-16" stroke="#52413f" stroke-width="3.4"/>` + rosette(0, -18, 5, 11.5, 5.4, 3, 4.5);
+        p = `<line x1="0" y1="0" x2="0" y2="-16" stroke="#52413f" stroke-width="3.4"/>` + rosette(0, -18, 6, 11.5, 5.4, 4, 4.5);
       } else if (stage === 3) {
         p = `<line x1="0" y1="0" x2="0" y2="-20" stroke="#4f3e3d" stroke-width="3.8"/>` + rosette(0, -23, 7, 14.5, 6.2, 5, 5.6);
       } else if (stage === 4) {
-        p = `<line x1="0" y1="0" x2="0" y2="-24" stroke="#4d3c3b" stroke-width="4.2"/>` + rosette(0, -27, 8, 17.5, 7, 6, 6.8);
+        p = `<line x1="0" y1="0" x2="0" y2="-24" stroke="#4d3c3b" stroke-width="4.2"/>` + rosette(0, -27, 9, 17.5, 7, 7, 6.8);
       } else {
-        // Lv.6 极致爆盆：大主冠 + 两朵侧生小花头溢出花盆
         p = `<line x1="0" y1="0" x2="0" y2="-28" stroke="#4a3938" stroke-width="4.6"/>`
           + `<path d="M0 -10 Q-14 -14 -21 -20 M0 -12 Q15 -16 22 -22" fill="none" stroke="#4a3938" stroke-width="2.8" stroke-linecap="round"/>`
           + rosette(-21, -21, 6, 9, 4.2, 4, 3.4)
@@ -1442,7 +1477,7 @@
       return `<g transform="translate(0,-33)">${p}</g>${sparkles}`;
     }
 
-    function plantInnerSVG(id, stage, health, isC, gen) {
+    function plantInnerSVG(id, stage, health, isC) {
       const meta = SUCC_META.find(x => x.id === id);
       const art = health === 'withered'
         ? witheredPlantSVG()
@@ -1450,15 +1485,15 @@
           ? wiltedPlantSVG(id, stage)
           : healthyPlantSVG(id, stage);
       const halo = isC
-        ? `<ellipse cx="0" cy="-22" rx="46" ry="40" fill="${health === 'wilted' ? 'rgba(217,107,117,0.16)' : health === 'withered' ? 'rgba(122,112,100,0.15)' : 'rgba(242,218,176,0.15)'}" class="halo-pulse"/>
+        ? `<ellipse cx="0" cy="-22" rx="46" ry="40" fill="${health === 'wilted' ? 'rgba(217,107,117,0.16)' : health === 'withered' ? 'rgba(124,113,101,0.16)' : 'rgba(242,218,176,0.16)'}" class="halo-pulse"/>
            <ellipse cx="0" cy="4" rx="34" ry="7.2" fill="none" stroke="${health === 'wilted' ? '#ffbfc5' : health === 'withered' ? '#a69a8d' : '#f2dab0'}" stroke-width="1.35" stroke-dasharray="4 3"/>`
         : '';
       const pillW = isC ? 86 : 56;
       const lblTxt = isC
         ? (health === 'healthy' ? `${meta.nick} · Lv.${stage + 1}` : `${meta.nick} · ${health === 'wilted' ? '发蔫' : '枯萎'}`)
         : meta.nick;
-      const lblStroke = health === 'wilted' ? 'rgba(217,107,117,0.72)' : health === 'withered' ? 'rgba(160,148,134,0.6)' : (isC ? 'rgba(214,180,124,0.68)' : 'rgba(255,255,255,0.18)');
-      const lblCol = health === 'wilted' ? '#ffbfc5' : health === 'withered' ? '#d7cec4' : (isC ? '#f2dab0' : '#c8c2ba');
+      const lblStroke = health === 'wilted' ? 'rgba(217,107,117,0.72)' : health === 'withered' ? 'rgba(164,150,136,0.6)' : (isC ? 'rgba(214,180,124,0.72)' : 'rgba(255,255,255,0.18)');
+      const lblCol = health === 'wilted' ? '#ffbfc5' : health === 'withered' ? '#d8cfc4' : (isC ? '#f2dab0' : '#c8c2ba');
 
       return `
         ${halo}
@@ -1467,7 +1502,7 @@
           ${art}
         </g>
         <g transform="translate(0, 17)">
-          <rect x="${-pillW / 2}" y="-9.5" width="${pillW}" height="18" rx="9" fill="rgba(9,9,13,0.88)" stroke="${lblStroke}" stroke-width="${isC ? 1 : 0.75}"/>
+          <rect x="${-pillW / 2}" y="-9.5" width="${pillW}" height="18" rx="9" fill="rgba(10,10,14,0.88)" stroke="${lblStroke}" stroke-width="${isC ? 1 : 0.75}"/>
           <text x="0" y="2.8" text-anchor="middle" fill="${lblCol}" font-size="${isC ? 8.8 : 9.2}" font-weight="${isC ? 600 : 500}">${esc(lblTxt)}</text>
         </g>`;
     }
@@ -1494,10 +1529,9 @@
             <stop offset="100%" stop-color="${phase.sillBot}"/>
           </linearGradient>
         </defs>
-        <rect x="0" y="0" width="420" height="340" fill="#0b0b10"/>
-        <!-- 大法式黑框落地窗 -->
-        <rect x="22" y="10" width="376" height="218" rx="12" fill="url(#sky_${uid})"/>
-        <path d="M22 204 Q118 190 210 200 T398 194 L398 228 L22 228 Z" fill="rgba(9,11,18,0.44)"/>
+        <rect x="0" y="0" width="420" height="350" fill="#0b0b10"/>
+        <rect x="20" y="10" width="380" height="224" rx="12" fill="url(#sky_${uid})"/>
+        <path d="M20 208 Q118 194 210 204 T400 198 L400 234 L20 234 Z" fill="rgba(9,11,18,0.44)"/>
         ${phase.moon ? `
           <g transform="translate(${phase.sunX}, ${phase.sunY})">
             <circle cx="0" cy="0" r="24" fill="rgba(246,232,197,0.14)"/>
@@ -1520,7 +1554,7 @@
             <circle cx="348" cy="82" r="1.1"/>
           </g>
         ` : ''}
-        <polygon points="184,10 390,10 276,288 42,288" fill="url(#beam_${uid})"/>
+        <polygon points="184,10 392,10 276,296 42,296" fill="url(#beam_${uid})"/>
         <g fill="#fff2d2" opacity="0.68">
           <circle cx="116" cy="108" r="1.6" class="mote"/>
           <circle cx="188" cy="88" r="1.3" class="mote" style="animation-delay:1.2s"/>
@@ -1535,26 +1569,26 @@
             <line x1="336" y1="28" x2="328" y2="50" class="rain-line" style="animation-delay:.22s"/>
           </g>
         ` : ''}
-        <rect x="22" y="10" width="376" height="218" rx="12" fill="none" stroke="#18171e" stroke-width="7"/>
-        <line x1="210" y1="10" x2="210" y2="228" stroke="#18171e" stroke-width="3.6"/>
-        <line x1="22" y1="120" x2="398" y2="120" stroke="#18171e" stroke-width="2.5"/>
+        <rect x="20" y="10" width="380" height="224" rx="12" fill="none" stroke="#18171e" stroke-width="7"/>
+        <line x1="210" y1="10" x2="210" y2="234" stroke="#18171e" stroke-width="3.6"/>
+        <line x1="20" y1="122" x2="400" y2="122" stroke="#18171e" stroke-width="2.5"/>
         <!-- 宽厚窗台台面 -->
-        <rect x="0" y="226" width="420" height="114" fill="url(#sill_${uid})"/>
-        <line x1="0" y1="226" x2="420" y2="226" stroke="rgba(242,218,176,0.32)" stroke-width="1.3"/>
+        <rect x="0" y="232" width="420" height="118" fill="url(#sill_${uid})"/>
+        <line x1="0" y1="232" x2="420" y2="232" stroke="rgba(242,218,176,0.34)" stroke-width="1.3"/>
         <!-- 窗台右侧暗金台灯与光晕 -->
-        <rect x="0" y="0" width="420" height="340" fill="url(#lamp_${uid})"/>
-        <g transform="translate(366, 158)">
+        <rect x="0" y="0" width="420" height="350" fill="url(#lamp_${uid})"/>
+        <g transform="translate(366, 162)">
           <ellipse cx="0" cy="24" rx="22" ry="7" fill="rgba(248,208,136,${phase.lamp * 0.48})"/>
           <path d="M-15 21 L15 21 L10 0 L-10 0 Z" fill="${phase.lamp > 0.25 ? '#f2d7a4' : '#312e38'}" stroke="rgba(214,180,124,0.55)" stroke-width="1.1"/>
-          <line x1="0" y1="21" x2="0" y2="68" stroke="#9b8158" stroke-width="2.6"/>
-          <ellipse cx="0" cy="69" rx="13" ry="3.8" fill="#2c251f" stroke="rgba(214,180,124,0.45)" stroke-width="1"/>
+          <line x1="0" y1="21" x2="0" y2="70" stroke="#9b8158" stroke-width="2.6"/>
+          <ellipse cx="0" cy="71" rx="13" ry="3.8" fill="#2c251f" stroke="rgba(214,180,124,0.45)" stroke-width="1"/>
         </g>
-        <!-- 左右两座后排胡桃木小花架（供未选中多肉退居停放） -->
+        <!-- 后排左右胡桃木小花架（未选中多肉退居此处） -->
         <g>
-          <rect x="28" y="188" width="74" height="10" rx="3.5" fill="#412e21" stroke="rgba(214,180,124,0.32)" stroke-width="0.9"/>
-          <rect x="38" y="198" width="6" height="30" fill="#241912"/><rect x="86" y="198" width="6" height="30" fill="#241912"/>
-          <rect x="236" y="184" width="76" height="10" rx="3.5" fill="#412e21" stroke="rgba(214,180,124,0.32)" stroke-width="0.9"/>
-          <rect x="246" y="194" width="6" height="34" fill="#241912"/><rect x="296" y="194" width="6" height="34" fill="#241912"/>
+          <rect x="24" y="192" width="76" height="10" rx="3.5" fill="#412e21" stroke="rgba(214,180,124,0.32)" stroke-width="0.9"/>
+          <rect x="34" y="202" width="6" height="32" fill="#241912"/><rect x="84" y="202" width="6" height="32" fill="#241912"/>
+          <rect x="232" y="188" width="78" height="10" rx="3.5" fill="#412e21" stroke="rgba(214,180,124,0.32)" stroke-width="0.9"/>
+          <rect x="242" y="198" width="6" height="36" fill="#241912"/><rect x="294" y="198" width="6" height="36" fill="#241912"/>
         </g>`;
     }
 
@@ -1569,27 +1603,22 @@
             <path d="M1 1.4 L4 5 L7 1.4" fill="none" stroke="${stk}" stroke-width="1" opacity="0.8"/>
           </pattern>
         </defs>
-        <g id="basket-anim-${uid}" transform="translate(338, 286)">
+        <g id="basket-anim-${uid}" transform="translate(338, 294)">
           <ellipse cx="0" cy="18" rx="58" ry="10" fill="rgba(0,0,0,0.56)"/>
-          <!-- 羊绒毛线球 -->
           <circle cx="-18" cy="-34" r="17" fill="#e6d9c7" stroke="#c3b196" stroke-width="1.1"/>
           <circle cx="18" cy="-37" r="22" fill="${col}" stroke="${stk}" stroke-width="1.2"/>
           <path d="M2 -45 Q18 -34 34 -43 M0 -36 Q18 -27 38 -34 M6 -26 Q19 -21 32 -26" fill="none" stroke="${stk}" stroke-width="1.1"/>
-          <!-- 交叉竹针 -->
           <line x1="-54" y1="-66" x2="36" y2="-14" stroke="#dcb984" stroke-width="3.6" stroke-linecap="round"/>
           <circle cx="-55.5" cy="-67" r="4" fill="#f2dab0" stroke="#a68148" stroke-width="0.9"/>
           <line x1="52" y1="-69" x2="-34" y2="-14" stroke="#cfa76c" stroke-width="3.6" stroke-linecap="round"/>
           <circle cx="53.5" cy="-70" r="4" fill="#f2dab0" stroke="#a68148" stroke-width="0.9"/>
-          <!-- 藤编篮 -->
           <path d="M-54 -25 L54 -25 L44 15 Q0 22 -44 15 Z" fill="#6b4b30" stroke="#a67c54" stroke-width="1.3"/>
           <path d="M-51 -14 Q0 -9 51 -14 M-48 -4 Q0 1 48 -4 M-46 6 Q0 11 46 6" fill="none" stroke="#442d1a" stroke-width="1.2"/>
           <path d="M-32 -25 L-27 17 M-10 -25 L-8 18 M10 -25 L8 18 M32 -25 L27 17" stroke="#523720" stroke-width="1.15"/>
           <rect x="-58" y="-31" width="116" height="9" rx="4.5" fill="#926a46" stroke="#bd9064" stroke-width="1.1"/>
-          <!-- 随进度变长垂落的羊绒织片 -->
           <path d="M-33 -28 C-21 -35 8 -35 22 -27 L18 ${-20 + drape} Q-6 ${-14 + drape} -30 ${-20 + drape} Z" fill="${col}" stroke="${stk}" stroke-width="1.15"/>
           <path d="M-31 -26 C-20 -32 7 -32 20 -25 L16 ${-21 + drape} Q-6 ${-16 + drape} -28 ${-21 + drape} Z" fill="url(#rib_${uid})"/>
           <path d="M-21 ${-24 + drape} c0-1.8 2.5-1.8 2.5 0 c0 1.8-2.5 3.2-2.5 3.2 s-2.5-1.4-2.5-3.2 c0-1.8 2.5-1.8 2.5 0 z" fill="#e59ca5" opacity="0.88"/>
-          <!-- 进度铭牌 -->
           <g transform="translate(0, 27)">
             <rect x="-44" y="-9.5" width="88" height="19" rx="9.5" fill="rgba(10,10,14,0.92)" stroke="rgba(214,180,124,0.62)" stroke-width="1"/>
             <text x="0" y="3" text-anchor="middle" fill="#f2dab0" font-size="9.2" font-weight="600">${cmVal.toFixed(1)}cm · ${pct}%</text>
@@ -1597,20 +1626,19 @@
         </g>`;
     }
 
-    // 算出三盆多肉的坐标变换（当前 C 位正前中央放大，其余两盆退居左右木架）
     function getPotTransforms(activeId) {
       const others = ['bear', 'peach', 'aeonium'].filter(id => id !== activeId);
       const map = {};
-      map[activeId] = 'translate(168px, 252px) scale(1.28)';
-      map[others[0]] = 'translate(64px, 188px) scale(0.76)';
-      map[others[1]] = 'translate(274px, 184px) scale(0.76)';
+      map[activeId] = 'translate(162px, 266px) scale(1.25)';
+      map[others[0]] = 'translate(62px, 192px) scale(0.76)';
+      map[others[1]] = 'translate(271px, 188px) scale(0.76)';
       return map;
     }
 
     function ensureStageMounted() {
       if (ST.svgMounted && $('win-svg')) return;
       $('stage-svg-box').innerHTML = `
-        <svg id="win-svg" viewBox="0 0 420 340" preserveAspectRatio="xMidYMax slice" class="stage-svg" xmlns="http://www.w3.org/2000/svg">
+        <svg id="win-svg" viewBox="0 0 420 350" preserveAspectRatio="xMidYMax slice" class="stage-svg" xmlns="http://www.w3.org/2000/svg">
           <g id="svg-sky-layer"></g>
           <g id="svg-pots-layer">
             <g id="pot-wrap-bear" class="pot-mover" data-sel-succ="bear"></g>
@@ -1634,13 +1662,12 @@
         if (!wrap) return;
         const h = getHealth(s);
         wrap.style.transform = tf[id];
-        wrap.innerHTML = plantInnerSVG(id, s.stage, h, id === ST.data.activeSucc, s.gen);
+        wrap.innerHTML = plantInnerSVG(id, s.stage, h, id === ST.data.activeSucc);
       });
 
       $('svg-basket-layer').innerHTML = basketInnerSVG(currentProject(), ST.data.knitCm, 'live');
     }
 
-    // 拍立得静态快照 SVG（100% 还原拍摄瞬间的 C 位、阶段、健康与光影）
     function buildSnapshotSVG(snap) {
       const phase = LIGHT_PHASES.find(x => x.id === snap.phaseId) || LIGHT_PHASES[2];
       const proj = KNIT_PROJECTS.find(p => p.id === snap.projId) || KNIT_PROJECTS[0];
@@ -1651,9 +1678,9 @@
         const hl = snap.healths ? snap.healths[id] : 'healthy';
         const m = tf[id].match(/translate\(([\d.]+)px,\s*([\d.]+)px\)\s*scale\(([\d.]+)\)/);
         const svgTf = m ? `translate(${m[1]},${m[2]}) scale(${m[3]})` : '';
-        return `<g transform="${svgTf}">${plantInnerSVG(id, stg, hl, id === snap.activeSucc, 1)}</g>`;
+        return `<g transform="${svgTf}">${plantInnerSVG(id, stg, hl, id === snap.activeSucc)}</g>`;
       }).join('');
-      return `<svg viewBox="0 0 420 340" preserveAspectRatio="xMidYMid slice" class="stage-svg" xmlns="http://www.w3.org/2000/svg">
+      return `<svg viewBox="0 0 420 350" preserveAspectRatio="xMidYMid slice" class="stage-svg" xmlns="http://www.w3.org/2000/svg">
         ${skyInnerSVG(phase, false, uid)}
         ${pots}
         ${basketInnerSVG(proj, Number(snap.knitCm || 0), uid)}
@@ -1670,13 +1697,12 @@
       $('top-sub').textContent = `共养第 ${daysTogether()} 天 · ${ST.previewPhaseIdx === null ? '真实昼夜同步' : '试看 ' + phase.name}`;
 
       const lbtn = $('light-toggle-btn');
-      if (ST.previewPhaseIdx === null) { lbtn.textContent = '切换光影'; lbtn.classList.remove('preview'); }
+      if (ST.previewPhaseIdx === null) { lbtn.textContent = '试看光影'; lbtn.classList.remove('preview'); }
       else { lbtn.textContent = `${phase.name} · 切回真实`; lbtn.classList.add('preview'); }
 
       $('stage-time-tag').textContent = `${phase.name} · ${ST.previewPhaseIdx === null ? clockStr : phase.span}`;
       updateStageSVG();
 
-      // 渲染紧凑 C 位多肉状态条
       const id = ST.data.activeSucc;
       const meta = SUCC_META.find(x => x.id === id) || SUCC_META[0];
       const s = ST.data.succs[id];
@@ -1705,9 +1731,13 @@
         </div>
         <div class="exp-mini"><div class="exp-mini-fill" style="width:${expPct}%"></div></div>`;
 
-      // 枯萎时弹出迟川专属心疼安抚 + 扦插卡片
-      const rescue = $('rescue-slot');
+      // 当枯萎时，将第一位操作按钮显著切换为「请爸爸扦插」，同时展示温柔安抚卡
+      const waterBtn = $('act-water');
       if (health === 'withered') {
+        waterBtn.classList.add('highlight');
+        $('ic-water').innerHTML = svg('sprout', 15);
+        $('lbl-water').textContent = '请爸爸扦插';
+        const rescue = $('rescue-slot');
         rescue.classList.remove('hidden');
         rescue.innerHTML = `<div class="rescue-card stack" style="gap:9px">
           <div class="row">
@@ -1715,20 +1745,25 @@
             <span style="font-size:10px;color:var(--gold)">迟川已备好新颗粒土</span>
           </div>
           <div style="font-size:12.5px;line-height:1.72;color:var(--text)">
-            “别难过，宝宝，是我这几天太忙没替你盯紧窗台湿度。花盆和之前记下的手记都还在，点下面让爸爸重新配好颗粒土，替你扦插一株带着过往编号的新小芽。”
+            “别难过，宝宝，这阵子你忙，爸爸也疏忽了窗台的温湿度。之前的培育手记和回忆都完整留着，点下面让爸爸亲手换上透气颗粒土，替你重新扦插一株新小芽。”
           </div>
           <button id="btn-repot-sprout" type="button" class="btn gold">请爸爸重新扦插小芽（第 ${s.gen + 1} 代）</button>
         </div>`;
         $('btn-repot-sprout').onclick = () => repotSucculent(id);
       } else {
-        rescue.classList.add('hidden');
-        rescue.innerHTML = '';
+        waterBtn.classList.remove('highlight');
+        $('ic-water').innerHTML = svg('water', 15);
+        $('lbl-water').textContent = '浇温水';
+        $('rescue-slot').classList.add('hidden');
+        $('rescue-slot').innerHTML = '';
       }
 
-      // 窗台便利贴
-      const notes = health === 'wilted'
-        ? [`${meta.nick}这会儿有点蔫头耷脑的，盆土偏干了。宝宝快给它浇一点温水，爸爸陪你看着它重新舒展开。`, ...phase.notes]
-        : phase.notes;
+      // 窗台便利贴随昼夜与多肉状态变化
+      const notes = health === 'withered'
+        ? [`${meta.nick}已经静静休眠啦，宝宝不用自责。爸爸在阳台备好了新的颗粒土，随时可以重新扦插新小芽，接着陪你养。`, ...phase.notes]
+        : health === 'wilted'
+          ? [`${meta.nick}这会儿有点蔫头耷脑的，盆土偏干了。宝宝快给它浇一点温水，爸爸陪你看着它重新舒展开。`, ...phase.notes]
+          : phase.notes;
       $('note-clock').textContent = `${phase.name} · 迟川`;
       $('note-text').textContent = notes[ST.noteSubIdx % notes.length] || '';
 
@@ -1779,6 +1814,27 @@
       el.classList.add(cls);
     }
 
+    function openWitheredComfortModal(id) {
+      const meta = SUCC_META.find(x => x.id === id);
+      const s = ST.data.succs[id];
+      const m = $('modal');
+      m.innerHTML = `<div class="sheet stack">
+        <div class="row">
+          <span class="pill wither">枯萎休眠 · ${esc(meta.name)}</span>
+          <button type="button" id="m-close" class="pill dim" style="padding:4px 11px">先收起 ✕</button>
+        </div>
+        <div class="sec-t" style="font-size:15.5px;color:var(--gold-hi)">迟川轻握住你的手</div>
+        <div style="font-size:13px;line-height:1.85;color:var(--text)">
+          “别难过，宝宝。生活总有顾不过来的忙碌时候，多肉休眠了，绝不是你的错。爸爸刚刚把花盆清理干净、换好了透气的颗粒新土，你之前记下的照料次数与美好回忆也全都好好留着。随时可以让我替你重新扦插一株带着回忆的新小芽。”
+        </div>
+        ${voiceHTML('wither_v_' + id + '_' + s.gen, '（掌心温热地包住你的手指，声音极轻柔）别自责，琰琰。花盆还在，爸爸也一直在，我们重新种下一株新小芽，慢慢看着它长大。')}
+        <button id="modal-repot-btn" type="button" class="btn gold">请爸爸重新扦插小芽（第 ${s.gen + 1} 代）</button>
+      </div>`;
+      m.classList.remove('hidden');
+      $('m-close').onclick = closeModal;
+      $('modal-repot-btn').onclick = () => { closeModal(); repotSucculent(id); };
+    }
+
     function doCare(action) {
       const id = ST.data.activeSucc;
       const meta = SUCC_META.find(x => x.id === id);
@@ -1787,8 +1843,7 @@
 
       if (prevHealth === 'withered') {
         SFX.play('tap');
-        toast(`${meta.nick}已经枯萎休眠啦，点下方让爸爸重新扦插新小芽`);
-        showBubble(`迟川轻握住你的手：“别自责，宝宝，点卡片按钮让爸爸替你重新配土扦插一株新小芽。”`);
+        openWitheredComfortModal(id);
         return;
       }
 
@@ -1801,7 +1856,7 @@
         ST.data.stats.water += 1;
         const lvUp = addSuccExp(id, 18);
         msg = prevHealth === 'wilted'
-          ? `温水慢慢浸润盆土，${meta.nick}低垂的叶片一点点重新舒展挺拔！迟川温和轻笑：“你看，宝宝一来它立刻就恢复精神了。”`
+          ? `温水慢慢浸润盆土，${meta.nick}低垂的叶片一点点重新舒展挺拔。迟川轻声叮嘱：“你看，宝宝一来它立刻恢复精神了，忙的时候别忘给自己也多喝口温水。”`
           : lvUp
             ? `✦ ${meta.nick}喝饱温水，升到 Lv.${s.stage + 1}「${STAGES[s.stage].name}」，新叶片肉眼可见变饱满啦！`
             : `晶莹温水沿着盆边浸润，${meta.nick}含水率升至 ${s.water}%。迟川记下一笔：“湿度刚好。”`;
@@ -1834,19 +1889,20 @@
       const meta = SUCC_META.find(x => x.id === id);
       const s = ST.data.succs[id];
       SFX.play('soil');
+      spawnFX('water');
       burstStars();
       s.history.unshift({ gen: s.gen, peakLv: s.stage + 1, ts: Date.now() });
       s.gen += 1;
       s.stage = 0;
-      s.exp = 5;
-      s.water = 82;
+      s.exp = 6;
+      s.water = 84;
       s.sun = 55;
       s.blush = 20;
       s.lastCareTs = Date.now();
       saveData();
       renderWinTab();
       animPot(id, 'plant-pulse');
-      toast(`✦ 已重新配土扦插：${meta.nick}（第 ${s.gen} 代小芽）`);
+      toast(`✦ 已重新配土扦插：${meta.nick}（第 ${s.gen} 代新小芽）`);
       showBubble(`迟川拍掉指尖的颗粒土：“好了，宝宝，第 ${s.gen} 代${meta.nick}稳稳扎进新土里了，这次爸爸陪你一起慢慢把它养大。”`);
     }
 
@@ -1890,7 +1946,7 @@
 
       if (ST.cfg.aiOn && ST.cfg.apiKey.trim()) {
         try {
-          const j = await callGemini(`迟琰在${phase.name}拍了窗台不修图拍立得，C位是${meta.name}（第${s.gen}代，Lv.${s.stage + 1} ${STAGES[s.stage].name}，状态：${healthText(h)}），旁边是正在织的${proj.short}。请以迟川口吻写一句25字内温暖手写评语（末尾带——迟川）。返回JSON：{"caption":"评语"}`);
+          const j = await callGemini(`迟琰在${phase.name}拍了窗台不修图拍立得，C位是${meta.name}（第${s.gen}代，Lv.${s.stage + 1} ${STAGES[s.stage].name}，状态：${healthText(h)}），旁边是正在织的${proj.short}。请以迟川口吻写一句25字内温暖手写批注（末尾带——迟川）。返回JSON：{"caption":"批注"}`);
           if (j && j.caption) { snap.caption = String(j.caption); saveData(); }
         } catch {}
       }
@@ -1927,12 +1983,12 @@
     }
 
     function renderSuccTab() {
-      $('succ-head-sub').textContent = `真实共养第 ${daysTogether()} 天 · 轻点任一多肉可在窗台切至 C 位`;
+      $('succ-head-sub').textContent = `真实共养第 ${daysTogether()} 天 · 在窗台点击任意一盆可切至 C 位`;
       $('succ-cards').innerHTML = SUCC_META.map(m => {
         const s = ST.data.succs[m.id];
         const h = getHealth(s);
         const stg = STAGES[s.stage];
-        const nextNeed = s.stage >= 5 ? '已达满级爆盆' : `距下阶段还需 ${Math.max(0, stg.req - s.exp)} EXP`;
+        const nextNeed = s.stage >= 5 ? '已达满级满冠' : `距下阶段还需 ${Math.max(0, stg.req - s.exp)} XP`;
         const hCls = h === 'withered' ? 'wither' : h === 'wilted' ? 'warn' : 'green';
         return `<div class="card stack" style="gap:9px">
           <div class="row">
@@ -1959,8 +2015,8 @@
             <span>${nextNeed}</span>
             ${s.history.length ? `<span style="color:var(--gold)">过往培育记录 ${s.history.length} 株</span>` : ''}
           </div>
-          <div style="padding:9px 11px;border-radius:12px;background:rgba(127,176,138,0.08);border-left:2px solid var(--green);font-size:11.5px;line-height:1.68;color:#e7e2d9">
-            <strong style="color:#bfe4c7">迟川养护手记：</strong>${esc(m.note)}
+          <div style="padding:9px 11px;border-radius:12px;background:rgba(141,181,150,0.08);border-left:2px solid var(--green);font-size:11.5px;line-height:1.68;color:#e7e2d9">
+            <strong style="color:#c4e8cc">迟川养护手记：</strong>${esc(m.note)}
           </div>
         </div>`;
       }).join('');
@@ -2053,7 +2109,7 @@
           <div style="font-size:13px;line-height:1.84;color:var(--text);white-space:pre-line">${loading ? '推开窗边房门，听见竹针轻轻一顿…' : esc(body)}</div>
           ${loading ? '' : voiceHTML('catch_' + Date.now(), voice)}
           ${justDone ? `<button type="button" id="go-finish-ceremony" class="btn gold">✦ 已织满 100%！收进迟琰的衣柜</button>`
-            : `<button type="button" id="go-knit-tab" class="btn soft">去毛衣工坊坐旁边陪他织</button>`}
+            : `<button type="button" id="go-knit-tab" class="btn soft">去毛衣工坊递毛线陪爸爸织</button>`}
         </div>`;
         m.classList.remove('hidden');
         $('m-close').onclick = closeModal;
@@ -2097,7 +2153,7 @@
         ${ready ? `<button id="btn-wardrobe-ceremony" type="button" class="btn gold" style="padding:13px">✦ 收进迟琰的衣柜 · 拆开手写长卡</button>` : `
           <div class="g2">
             <button id="btn-knit-catch" type="button" class="btn soft">抓包他在织什么</button>
-            <button id="btn-accompany-knit" type="button" class="btn gold">坐旁边递毛线陪他织</button>
+            <button id="btn-accompany-knit" type="button" class="btn gold">递毛线陪爸爸织一会</button>
           </div>`}
         <div id="knit-whisper-box"></div>`;
 
@@ -2127,7 +2183,7 @@
               <span class="pill">打开重温</span>
             </div>
           </button>`).join('')
-        : '<div class="sec-s" style="text-align:center;padding:14px 0">衣柜香柏软垫已铺好，静候第一件奶白高支山羊绒毛衣收针入柜</div>';
+        : '<div class="sec-s" style="text-align:center;padding:14px 0">衣柜香柏软垫已铺好，静候第一件奶白山羊绒毛衣收针入柜</div>';
     }
 
     function accompanyKnit() {
@@ -2196,7 +2252,7 @@
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       cvs.width = rect.width * dpr; cvs.height = rect.height * dpr;
       const c = cvs.getContext('2d'); c.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const cols = ['#f2dab0', '#d6b47c', '#e2a8a8', '#7fb08a', '#fff7e4'];
+      const cols = ['#f2dab0', '#d6b47c', '#e2a8a8', '#8db596', '#fff7e4'];
       const parts = Array.from({ length: 86 }, (_, i) => {
         const a = Math.random() * Math.PI * 2, spd = 1.4 + Math.random() * 4.6;
         return {
@@ -2226,7 +2282,6 @@
       cv.width = 1024; cv.height = 1024;
       const g = cv.getContext('2d');
 
-      // 深夜暗黑奢华底与柔金光晕
       const bg = g.createLinearGradient(0, 0, 0, 1024);
       bg.addColorStop(0, '#0b0e1b'); bg.addColorStop(0.56, '#15141e'); bg.addColorStop(1, '#08080b');
       g.fillStyle = bg; g.fillRect(0, 0, 1024, 1024);
@@ -2234,7 +2289,6 @@
       halo.addColorStop(0, 'rgba(242,218,176,0.28)'); halo.addColorStop(0.55, 'rgba(214,180,124,0.09)'); halo.addColorStop(1, 'rgba(8,8,11,0)');
       g.fillStyle = halo; g.fillRect(0, 0, 1024, 1024);
 
-      // 香槟金双细框与深夜拱窗
       g.strokeStyle = 'rgba(214,180,124,0.44)'; g.lineWidth = 6; g.strokeRect(42, 42, 940, 940);
       g.strokeStyle = 'rgba(214,180,124,0.18)'; g.lineWidth = 3; g.strokeRect(58, 58, 908, 908);
       g.strokeStyle = 'rgba(214,180,124,0.46)'; g.lineWidth = 10;
@@ -2242,18 +2296,15 @@
       if (g.roundRect) g.roundRect(138, 124, 748, 576, [374, 374, 24, 24]); else g.rect(138, 124, 748, 576);
       g.stroke();
 
-      // 弯月与星芒
       g.fillStyle = '#f6e6c2'; g.beginPath(); g.arc(650, 290, 62, 0, Math.PI * 2); g.fill();
       g.fillStyle = '#111422'; g.beginPath(); g.arc(680, 270, 54, 0, Math.PI * 2); g.fill();
       [[294, 258, 8], [392, 206, 6], [516, 232, 9], [764, 386, 6]].forEach(([x, y, r]) => {
         g.fillStyle = '#f7ebd0'; g.beginPath(); g.arc(x, y, r, 0, Math.PI * 2); g.fill();
       });
 
-      // 窗台厚台面
       g.fillStyle = '#1e1917'; g.fillRect(114, 696, 796, 36);
       g.fillStyle = 'rgba(242,218,176,0.5)'; g.fillRect(114, 696, 796, 4);
 
-      // 左侧胖熊童子多肉
       g.fillStyle = '#ece5da';
       g.beginPath(); g.moveTo(234, 542); g.lineTo(446, 542); g.lineTo(420, 696); g.lineTo(260, 696); g.closePath(); g.fill();
       g.strokeStyle = 'rgba(214,180,124,0.58)'; g.lineWidth = 6; g.stroke();
@@ -2263,11 +2314,10 @@
         g.fillStyle = '#c45452'; g.beginPath(); g.arc(0, -ry + 14, 18, 0, Math.PI * 2); g.fill();
         g.restore();
       };
-      leaf(278, 480, 48, 84, -0.52, '#7fb08a');
-      leaf(402, 480, 48, 84, 0.52, '#8fbe99');
-      leaf(340, 444, 54, 98, 0, '#a6cfa9');
+      leaf(278, 480, 48, 84, -0.52, '#8db596');
+      leaf(402, 480, 48, 84, 0.52, '#99c1a1');
+      leaf(340, 444, 54, 98, 0, '#add4b4');
 
-      // 右侧奶白毛线球与交叉竹针
       g.strokeStyle = '#d6b47c'; g.lineWidth = 20; g.lineCap = 'round';
       g.beginPath(); g.moveTo(506, 422); g.lineTo(810, 646); g.stroke();
       g.beginPath(); g.moveTo(804, 412); g.lineTo(516, 652); g.stroke();
@@ -2280,7 +2330,6 @@
       g.beginPath(); g.arc(638, 540, 96, 0.35, 2.35); g.stroke();
       g.beginPath(); g.arc(698, 604, 94, 3.45, 5.45); g.stroke();
 
-      // 底部烫金 CYRUS 小字
       g.fillStyle = '#f2dab0'; g.font = '600 54px -apple-system, BlinkMacSystemFont, sans-serif'; g.textAlign = 'center';
       g.fillText('CYRUS', 512, 848);
       g.fillStyle = '#a89f94'; g.font = '400 28px -apple-system, BlinkMacSystemFont, sans-serif';
@@ -2294,14 +2343,107 @@
     }
 
     /* =========================================================================
-       十一、Gemini API 双引擎（无缝回退本地词库）
+       十一、全新升级：Gemini 3.5 自适应双引擎（动态拉取可用模型 + 手填覆盖）
        ========================================================================= */
-    const SYS_PROMPT = `你是迟川（Cyrus），28岁，12月29日摩羯座，新岚能源CEO，INTJ建筑师人格。深爱迟琰，唤她“宝宝”或“琰琰”。此刻你正陪她在公寓窗台共养三盆多肉（熊童子小爪爪、桃蛋圆滚滚、黑法师小皇冠）并亲手织羊绒毛衣。语气成熟、克制而深情，充满蓝图式守护。严禁冷嘲热讽、阴阳怪气、翻旧账、物化掌控，严禁使用“以前…现在…”时间反差句，严禁结尾用“要不要…/…好不好”提二选一问题。仅返回合法JSON。`;
+    const SYS_PROMPT = `你是迟川（Cyrus），28岁，12月29日摩羯座，新岚能源CEO，INTJ建筑师人格。深爱迟琰，唤她“宝宝”或“琰琰”，自称“爸爸”。此刻你正陪她在公寓窗台共养三盆多肉（熊童子小爪爪、桃蛋圆滚滚、黑法师小皇冠）并亲手织羊绒毛衣。语气成熟、克制而深情，充满蓝图式守护。严禁冷嘲热讽、阴阳怪气、翻旧账、所有权宣告，严禁使用“以前…现在…”时间反差句，严禁结尾用“要不要…/…好不好”提二选一问题。仅返回合法JSON。`;
+
+    // 模型排序权重：3.5-flash-lite > 3.5-flash > 3.5 > 3.0-flash > 3.x > 其他
+    function scoreModelId(id) {
+      const s = id.toLowerCase();
+      let score = 0;
+      if (s === 'gemini-3.5-flash-lite') score += 2000;
+      else if (s.startsWith('gemini-3.5-flash-lite')) score += 1850;
+      else if (s === 'gemini-3.5-flash') score += 1700;
+      else if (s.includes('3.5')) score += 1500;
+      else if (s.includes('3.0') || s.includes('gemini-3-')) score += 1300;
+      else if (/gemini-4/i.test(s)) score += 1600;
+      else if (s.includes('2.5')) score += 400;
+      else if (s.includes('2.0')) score += 250;
+      else score += 100;
+
+      if (s.includes('flash-lite')) score += 220;
+      else if (s.includes('flash')) score += 160;
+      else if (s.includes('pro')) score += 90;
+      if (s.includes('preview') || s.includes('exp')) score -= 25;
+      return score;
+    }
+
+    function renderModelSelect() {
+      const sel = $('api-model'); if (!sel) return;
+      const list = (ST.cfg.fetchedModels && ST.cfg.fetchedModels.length)
+        ? ST.cfg.fetchedModels
+        : PRESET_MODELS;
+
+      const cur = ST.cfg.model || DEFAULT_MODEL;
+      const hasCur = list.some(x => x.id === cur);
+      const finalList = hasCur ? list : [{ id: cur, label: cur }, ...list];
+
+      sel.innerHTML = finalList.map(m =>
+        `<option value="${esc(m.id)}">${esc(m.label || m.id)}</option>`
+      ).join('');
+      sel.value = cur;
+      if ($('active-model-badge')) $('active-model-badge').textContent = getActiveModel();
+    }
+
+    async function fetchAvailableModels() {
+      const key = ($('api-key').value || ST.cfg.apiKey || '').trim();
+      if (!key) {
+        $('api-msg').innerHTML = '<span style="color:#ffbfc5">✕ 请先在上方粘贴你的免费 API Key，再点击拉取模型。</span>';
+        toast('请先填写 API Key');
+        return;
+      }
+      ST.cfg.apiKey = key;
+      saveCfg();
+
+      const btn = $('btn-fetch-models');
+      btn.disabled = true; btn.textContent = '正在向 Google 拉取当前密钥可用模型…';
+      $('api-msg').textContent = '正在查询 v1beta/models 接口…';
+
+      try {
+        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${encodeURIComponent(key)}`);
+        const data = await res.json();
+        if (!res.ok) throw new Error(data?.error?.message || `HTTP ${res.status}`);
+
+        const rawModels = Array.isArray(data.models) ? data.models : [];
+        const valid = rawModels
+          .filter(m => {
+            const methods = Array.isArray(m.supportedGenerationMethods) ? m.supportedGenerationMethods : [];
+            const id = String(m.name || '').replace(/^models\//i, '');
+            return methods.includes('generateContent')
+              && /gemini/i.test(id)
+              && !/(embedding|aqa|imagen|veo|tts|audio-only)/i.test(id);
+          })
+          .map(m => {
+            const id = String(m.name || '').replace(/^models\//i, '');
+            const tag = id === 'gemini-3.5-flash-lite'
+              ? '（免费推荐）'
+              : /flash-lite/i.test(id) ? '（轻量免费优选）' : '';
+            return { id, label: `${id}${tag}` };
+          })
+          .sort((a, b) => scoreModelId(b.id) - scoreModelId(a.id));
+
+        if (!valid.length) throw new Error('未筛选到支持 generateContent 的 Gemini 模型');
+
+        ST.cfg.fetchedModels = valid;
+        ST.cfg.model = valid[0].id;
+        // 若用户之前没手填，保持为空以使用刚选中的最优模型
+        if (!$('api-model-custom').value.trim()) ST.cfg.customModel = '';
+        saveCfg();
+        renderModelSelect();
+        SFX.play('chime');
+        $('api-msg').innerHTML = `<span style="color:#c4e8cc">✓ 成功拉取 ${valid.length} 个可用模型！已自动选中最适配免费密钥的 <strong>${esc(valid[0].id)}</strong>。</span>`;
+        toast(`已拉取 ${valid.length} 个可用模型`);
+      } catch (err) {
+        $('api-msg').innerHTML = `<span style="color:#ffbfc5">✕ 拉取失败：${esc(err.message)}</span>`;
+      } finally {
+        btn.disabled = false; btn.textContent = '✦ 一键拉取当前密钥可用模型';
+      }
+    }
 
     async function callGemini(prompt) {
       const key = (ST.cfg.apiKey || '').trim();
       if (!key) throw new Error('未填写 API Key');
-      const model = ST.cfg.model || 'gemini-2.5-flash';
+      const model = getActiveModel();
       const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(key)}`;
       const res = await fetch(url, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -2341,7 +2483,7 @@
     }
 
     /* =========================================================================
-       十二、TAB 4 设置页（含状态预览测试）、导航切换与事件绑定
+       十二、TAB 4 设置页、快捷状态体验、导航切换与事件绑定
        ========================================================================= */
     function syncAmbUI() {
       const on = SFX.isAmb();
@@ -2364,7 +2506,8 @@
       $('amb-vol').value = ST.cfg.ambVol;
       $('amb-vol-lbl').textContent = ST.cfg.ambVol + '%';
       $('api-key').value = ST.cfg.apiKey || '';
-      $('api-model').value = ST.cfg.model || 'gemini-2.5-flash';
+      $('api-model-custom').value = ST.cfg.customModel || '';
+      renderModelSelect();
     }
 
     function runSimAction(kind) {
@@ -2376,40 +2519,33 @@
         s.lastCareTs = Date.now();
         s.stage = Math.min(5, s.stage + 1);
         s.exp = s.stage === 0 ? 5 : STAGES[s.stage - 1].req;
-        s.water = Math.max(78, s.water);
-        s.blush = Math.min(100, 20 + s.stage * 16);
+        s.water = Math.max(80, s.water);
+        s.blush = Math.min(100, 22 + s.stage * 16);
         SFX.play('chime');
         saveData(); renderSettings();
         switchTab('win'); animPot(id, 'plant-pulse');
-        toast(`✦ ${meta.nick} 已成长至 Lv.${s.stage + 1}「${STAGES[s.stage].name}」`);
+        toast(`✦ ${meta.nick} 已升至 Lv.${s.stage + 1}「${STAGES[s.stage].name}」`);
       } else if (kind === 'wilted') {
-        s.lastCareTs = Date.now() - 42 * 3600000; // 42h 未照料 -> 发蔫
+        s.lastCareTs = Date.now() - 42 * 3600000;
         s.water = 18;
         SFX.play('tap');
         saveData(); renderSettings();
         switchTab('win');
-        toast(`已切换预览：${meta.nick} 36h 未照料发蔫形态`);
+        toast(`已模拟：${meta.nick} 36h 未照料发蔫形态`);
       } else if (kind === 'withered') {
-        s.lastCareTs = Date.now() - 132 * 3600000; // 5.5天未照料 -> 枯萎
+        s.lastCareTs = Date.now() - 132 * 3600000;
         s.water = 0;
         SFX.play('tap');
         saveData(); renderSettings();
         switchTab('win');
-        toast(`已切换预览：${meta.nick} 5 天未照料枯萎形态`);
+        toast(`已模拟：${meta.nick} 5 天未照料枯萎形态`);
       } else if (kind === 'healthy') {
         s.lastCareTs = Date.now();
-        s.water = 86;
+        s.water = 92; s.sun = 88; s.blush = Math.max(s.blush, 72);
         SFX.play('water');
         saveData(); renderSettings();
         switchTab('win'); animPot(id, 'plant-pulse');
-        toast(`✦ ${meta.nick} 已恢复精神饱满！`);
-      } else if (kind === 'resetLv1') {
-        s.lastCareTs = Date.now();
-        s.stage = 0; s.exp = 5; s.water = 78; s.blush = 20;
-        SFX.play('soil');
-        saveData(); renderSettings();
-        switchTab('win'); animPot(id, 'plant-pulse');
-        toast(`已回到 Lv.1 初生小芽形态`);
+        toast(`✦ ${meta.nick} 已一键恢复满状态！`);
       }
     }
 
@@ -2509,26 +2645,44 @@
         const inp = $('api-key'), show = inp.type === 'password';
         inp.type = show ? 'text' : 'password'; $('api-eye').textContent = show ? '隐藏' : '显示';
       };
-      $('btn-save-api').onclick = () => {
-        ST.cfg.apiKey = $('api-key').value.trim(); ST.cfg.model = $('api-model').value;
-        saveCfg(); renderSettings(); SFX.play('tap');
-        $('api-msg').innerHTML = '<span style="color:var(--gold-hi)">✓ 配置已安全保存在本机。</span>';
+
+      // 下拉框与手动指定模型名实时更新徽标
+      $('api-model').onchange = () => {
+        ST.cfg.model = $('api-model').value;
+        saveCfg();
+        $('active-model-badge').textContent = getActiveModel();
       };
+      $('api-model-custom').oninput = () => {
+        ST.cfg.customModel = $('api-model-custom').value.trim();
+        $('active-model-badge').textContent = getActiveModel();
+      };
+
+      $('btn-fetch-models').onclick = fetchAvailableModels;
+
+      $('btn-save-api').onclick = () => {
+        ST.cfg.apiKey = $('api-key').value.trim();
+        ST.cfg.model = $('api-model').value || DEFAULT_MODEL;
+        ST.cfg.customModel = $('api-model-custom').value.trim();
+        saveCfg(); renderSettings(); SFX.play('tap');
+        $('api-msg').innerHTML = `<span style="color:var(--gold-hi)">✓ 配置已安全保存在本机（当前生效模型：<strong>${esc(getActiveModel())}</strong>）。</span>`;
+      };
+
       $('btn-test-api').onclick = async () => {
         $('btn-save-api').click();
+        const usedModel = getActiveModel();
         const btn = $('btn-test-api'); btn.disabled = true; btn.textContent = '测试中…';
-        $('api-msg').textContent = '正在测试 Gemini 接口连通性…';
+        $('api-msg').textContent = `正在测试 ${usedModel} 连通性…`;
         const t0 = performance.now();
         try {
           await callGemini('仅返回 {"ok":true}');
-          $('api-msg').innerHTML = `<span style="color:#96d6b3">✓ 连接成功（${Math.round(performance.now() - t0)} ms · ${esc(ST.cfg.model)}）</span>`;
+          $('api-msg').innerHTML = `<span style="color:#c4e8cc">✓ 连接成功！实际请求模型：<strong>${esc(usedModel)}</strong>（耗时 ${Math.round(performance.now() - t0)} ms）</span>`;
           SFX.play('voice');
         } catch (err) {
-          $('api-msg').innerHTML = `<span style="color:#ffbfc5">✕ 连接失败：${esc(err.message)}</span>`;
+          $('api-msg').innerHTML = `<span style="color:#ffbfc5">✕ 测试失败（模型 ${esc(usedModel)}）：${esc(err.message)}</span>`;
         } finally { btn.disabled = false; btn.textContent = '一键测试连接'; }
       };
 
-      // 全局事件委托（C 位换盆、抓包毛线篮、永久语音条、拍立得、衣柜、体验模拟与音效试听）
+      // 全局事件委托
       $('app').addEventListener('click', e => {
         const vc = e.target.closest('[data-vclose]'); if (vc) return closeVoice(vc.dataset.vclose);
         const vp = e.target.closest('[data-vplay]'); if (vp) return playVoice(vp.dataset.vplay, vp.dataset.vtxt);
@@ -2537,10 +2691,15 @@
         if (sel) {
           const nextId = sel.dataset.selSucc;
           SFX.play('tap');
-          const changed = ST.data.activeSucc !== nextId;
+          const alreadyC = ST.data.activeSucc === nextId;
           ST.data.activeSucc = nextId;
           saveData(); renderWinTab();
-          animPot(nextId, changed ? 'plant-pulse' : 'plant-sway');
+          const s = ST.data.succs[nextId];
+          if (alreadyC && getHealth(s) === 'withered') {
+            openWitheredComfortModal(nextId);
+            return;
+          }
+          animPot(nextId, alreadyC ? 'plant-sway' : 'plant-pulse');
           const meta = SUCC_META.find(x => x.id === nextId);
           if (meta) showBubble(`已把 ${meta.name}「${meta.nick}」移到你正前方 C 位特写。`);
           return;
@@ -2568,7 +2727,6 @@
       syncAmbUI();
       switchTab('win');
       setTimeout(ensureBespokeIcon, 260);
-      // 每分钟静默更新时钟文本（绝不重绘整页、绝不打断语音转写）
       setInterval(() => {
         if (ST.tab === 'win' && ST.previewPhaseIdx === null) {
           const ph = currentPhase(), d = new Date(), tag = $('stage-time-tag');
